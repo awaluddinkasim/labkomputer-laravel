@@ -19,11 +19,16 @@ class BebasLabController extends Controller
     {
         if ($status == "pending") {
             $pengajuan = $this->bebasLabService->getPendingBebasLab();
+
+            return view('admin.bebas-lab', [
+                'daftarPengajuan' => $pengajuan
+            ]);
         } else {
             $pengajuan = $this->bebasLabService->getNotPendingBebasLab();
+
+            return view('admin.bebas-lab-arsip', [
+                'daftarPengajuan' => $pengajuan
+            ]);
         }
-        return view('admin.bebas-lab', [
-            'daftarPengajuan' => $pengajuan
-        ]);
     }
 }

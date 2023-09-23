@@ -7,20 +7,20 @@
         </div>
 
         @if (Session::has('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ Session::get('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ Session::get('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         @endif
         @if (Session::has('failed'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ Session::get('failed') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ Session::get('failed') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         @endif
 
         <div class="section-body">
@@ -33,22 +33,22 @@
                                 <th>NIM</th>
                                 <th>Nama Mahasiswa</th>
                                 <th>Tanggal Pengajuan</th>
-                                <th></th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($daftarPengajuan as $bebasLab)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $bebasLab->mahasiswa->nim }}</td>
-                                <td>{{ $bebasLab->mahasiswa->nama }}</td>
-                                <td>{{ Carbon\Carbon::parse($bebasLab->created_at)->isoFormat('D MMMM YYYY') }}</td>
-                                <td class="text-center">
-                                    <button class="btn btn-info btn-sm" onclick="document.location.href = ''">
-                                        Detail
-                                    </button>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $bebasLab->mahasiswa->nim }}</td>
+                                    <td>{{ $bebasLab->mahasiswa->nama }}</td>
+                                    <td>{{ Carbon\Carbon::parse($bebasLab->created_at)->isoFormat('D MMMM YYYY') }}</td>
+                                    <td>
+                                        <span class="{{ $bebasLab->status == 'selesai' ? 'text-success' : 'text-danger' }}">
+                                            {{ Str::ucfirst($bebasLab->status) }}
+                                        </span>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
