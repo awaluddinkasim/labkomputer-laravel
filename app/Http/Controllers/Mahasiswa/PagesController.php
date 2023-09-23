@@ -48,7 +48,7 @@ class PagesController extends Controller
         $semester = $this->pengaturanService->getSemesterSekarang();
         $data = [
             'daftarData' => auth()->user()->praktikum,
-            'daftarPraktikum' => $this->praktikumService->getPraktikumWithPengampu(auth()->user()->prodi, $semester)
+            'daftarPraktikum' => $this->praktikumService->getPraktikumWithPengampu(auth()->user()->id_prodi, $semester ? $semester->value : 'ganjil')
         ];
 
         return view('mahasiswa.slip', $data);
