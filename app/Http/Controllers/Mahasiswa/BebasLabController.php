@@ -32,6 +32,25 @@ class BebasLabController extends Controller
 
     public function store(Request $request)
     {
+        $path = public_path('f/bebaslab/'. auth()->user()->nim);
+        $slip = $request->file('bukti-bayar');
+        $slipName = now().'.'.$slip->extension();
 
+        $berkas = $request->file('berkas');
+        $berkasName = now().'.'.$berkas->extension();
+
+        $bebasLab = new BebasLab();
+        $bebasLab->bukti_bayar = $slipName;
+        $bebasLab->berkas = $berkasName;
+        $bebasLab->status = 'pending';
+        if ($request->catatan) {
+            $bebasLab->catatan = $request->catatan;
+        }
+        $bebasLab->save();
+
+        $berkas->move($path, $berkasName);
+        $slip->move($path, $slipName);
+
+        return redirect()->route('bebas-lab');
     }
 }
