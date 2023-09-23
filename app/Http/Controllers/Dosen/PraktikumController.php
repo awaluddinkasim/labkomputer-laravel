@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Dosen;
 
-use App\Models\Praktikum;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;

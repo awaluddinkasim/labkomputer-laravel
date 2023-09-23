@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Mahasiswa;
 
 use Illuminate\Http\Request;
-use App\Models\DataPraktikan;
 use App\Http\Controllers\Controller;
 use App\Http\Services\DataPraktikanService;
-use Illuminate\Support\Facades\File;
 
 class PraktikumController extends Controller
 {
