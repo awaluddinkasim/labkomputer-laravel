@@ -29,9 +29,7 @@ class DataPraktikanService
         $validator = Validator::make($data->all(), [
             'praktikum' => [
                 'required',
-                Rule::unique('data_praktikan', 'id_praktikum')->where(function ($query) use ($id, $data) {
-                    return $query->where('id_user', $id)->where('id_praktikum', $data->praktikum);
-                })
+                Rule::unique('data_praktikan', 'id_praktikum')->where('id_user', $id)
             ]
         ]);
 
