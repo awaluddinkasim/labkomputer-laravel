@@ -29,7 +29,7 @@ class DataPraktikanService
         $validator = Validator::make($data->all(), [
             'praktikum' => [
                 'required',
-                Rule::unique('data_praktikan')->where(function ($query) use ($id, $data) {
+                Rule::unique('data_praktikan', 'id_praktikum')->where(function ($query) use ($id, $data) {
                     return $query->where('id_user', $id)->where('id_praktikum', $data->praktikum);
                 })
             ]
@@ -37,7 +37,7 @@ class DataPraktikanService
 
         if ($validator->fails()) {
             return [
-                'status' => 'success',
+                'status' => 'failed',
                 'message' => 'Praktikum tersebut sudah ada'
             ];
         }

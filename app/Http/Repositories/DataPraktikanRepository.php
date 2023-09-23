@@ -25,11 +25,11 @@ class DataPraktikanRepository
 
     public function store($id, $data)
     {
-        $data = new $this->dataPraktikan();
-        $data->id_user = $id;
-        $data->id_praktikum = $data->praktikum;
-        $data->nidn_dosen = $data->dosen;
-        $data->save();
+        $dataPraktikan = new $this->dataPraktikan();
+        $dataPraktikan->id_user = $id;
+        $dataPraktikan->id_praktikum = $data->praktikum;
+        $dataPraktikan->nidn_dosen = $data->dosen;
+        $dataPraktikan->save();
 
         return [
             'status' => 'success',
