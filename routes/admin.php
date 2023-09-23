@@ -68,7 +68,9 @@ Route::group(['middleware' => 'auth:admin', 'as' => 'admin.'], function () {
     Route::get('/slip/export', [SlipPraktikumController::class, 'slipPraktikumExport'])->name('slip-export');
 
     // Bebas Lab
-    Route::get('/bebas-lab/{status}', [BebasLabController::class, 'bebasLab'])->name('bebas-lab');
+    Route::get('/bebas-lab/{status}', [BebasLabController::class, 'index'])->name('bebas-lab');
+    Route::get('/bebas-lab/pending/{id}', [BebasLabController::class, 'detail'])->name('bebas-lab.detail');
+    Route::put('/bebas-lab/pending/{id}/update', [BebasLabController::class, 'update'])->name('bebas-lab.update');
 
     // Pengaturan
     Route::post('/pengaturan', [PengaturanController::class, 'save'])->name('pengaturan-save');

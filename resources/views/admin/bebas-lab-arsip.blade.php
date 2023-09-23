@@ -71,18 +71,5 @@
                 sort: false
             });
         });
-
-        function deleteData(id) {
-            Swal.fire({
-                title: 'Apakah Anda yakin?',
-                text: "Data slip pembayaran yang terdaftar pada praktikum ini akan ikut terhapus.",
-                icon: 'warning',
-                showCancelButton: true,
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $(`#formDelete${id}`).submit();
-                }
-            });
-        }
     </script>
 @endpush

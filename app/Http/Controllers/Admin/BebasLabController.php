@@ -15,7 +15,7 @@ class BebasLabController extends Controller
         $this->bebasLabService = $bebasLabService;
     }
 
-    public function bebasLab($status)
+    public function index($status)
     {
         if ($status == "pending") {
             $pengajuan = $this->bebasLabService->getPendingBebasLab();
@@ -30,5 +30,24 @@ class BebasLabController extends Controller
                 'daftarPengajuan' => $pengajuan
             ]);
         }
+    }
+
+    public function detail($id)
+    {
+        $data = [
+            'bebasLab' => $this->bebasLabService->getBebasLabById($id)
+        ];
+
+        return view('admin.bebas-lab-detail', $data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $result = $this->bebasLabService->updateBebasLab($id, $request->status);
+
+        if ($result['status'] == "success") {
+            return redirect()->route('admin.bebas-lab', 'arsip')->with($result['status'], $result['message']);
+        }
+        return redirect()->route('admin.bebas-lab', 'pending')->with($result['status'], $result['message']);
     }
 }
