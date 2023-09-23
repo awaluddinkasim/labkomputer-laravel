@@ -43,6 +43,10 @@ class BebasLabRepository
         $berkas = $data->file('berkas');
         $berkasName = 'berkas-' . time() . '.' . $berkas->extension();
 
+        $bebasLab = $this->getByUser($user->id);
+        if ($bebasLab) {
+            $bebasLab->delete();
+        }
         $bebasLab = new $this->bebasLab();
         $bebasLab->id_user = $user->id;
         $bebasLab->bukti_bayar = $slipName;
