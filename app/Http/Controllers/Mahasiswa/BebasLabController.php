@@ -34,12 +34,13 @@ class BebasLabController extends Controller
     {
         $path = public_path('f/bebaslab/'. auth()->user()->nim);
         $slip = $request->file('bukti-bayar');
-        $slipName = now().'.'.$slip->extension();
+        $slipName = 'slip-'.time().'.'.$slip->extension();
 
         $berkas = $request->file('berkas');
-        $berkasName = now().'.'.$berkas->extension();
+        $berkasName = 'berkas'.time().'.'.$berkas->extension();
 
         $bebasLab = new BebasLab();
+        $bebasLab->id_user = auth()->user()->id;
         $bebasLab->bukti_bayar = $slipName;
         $bebasLab->berkas = $berkasName;
         $bebasLab->status = 'pending';
