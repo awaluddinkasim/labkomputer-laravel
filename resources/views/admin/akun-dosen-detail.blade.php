@@ -141,6 +141,6 @@
 @push('scripts')
     <script src="{{ asset('assets/plugins/selectize/selectize.min.js') }}"></script>
     <script>
-        $("select").selectize();
+        $(".select").selectize();
     </script>
 @endpush
