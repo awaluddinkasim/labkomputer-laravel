@@ -14,7 +14,7 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('bebas-lab.store') }}" method="post">
+                            <form action="{{ route('bebas-lab.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="bukti-bayar" class="form-label">Bukti Pembayaran (.pdf)</label>
