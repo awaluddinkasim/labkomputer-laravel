@@ -3,11 +3,14 @@
 namespace App\Http\Repositories;
 
 use App\Models\BebasLab;
+use Illuminate\Support\Facades\File;
 
-class BebasLabRepository {
+class BebasLabRepository
+{
     protected $bebasLab;
 
-    public function __construct(BebasLab $bebasLab) {
+    public function __construct(BebasLab $bebasLab)
+    {
         $this->bebasLab = $bebasLab;
     }
 
@@ -33,12 +36,12 @@ class BebasLabRepository {
 
     public function store($user, $data)
     {
-        $path = public_path('f/bebaslab/'. $user->nim);
+        $path = public_path('f/bebaslab/' . $user->nim);
         $slip = $data->file('bukti-bayar');
-        $slipName = 'slip-'.time().'.'.$slip->extension();
+        $slipName = 'slip-' . time() . '.' . $slip->extension();
 
         $berkas = $data->file('berkas');
-        $berkasName = 'berkas-'.time().'.'.$berkas->extension();
+        $berkasName = 'berkas-' . time() . '.' . $berkas->extension();
 
         $bebasLab = new $this->bebasLab();
         $bebasLab->id_user = $user->id;
@@ -64,6 +67,8 @@ class BebasLabRepository {
         $bebasLab = $this->bebasLab->find($id);
         $bebasLab->status = $status;
         $bebasLab->update();
+
+        File::deleteDirectory(public_path('f/bebaslab/' . $bebasLab->mahasiswa->nim));
 
         return [
             'status' => 'success',
