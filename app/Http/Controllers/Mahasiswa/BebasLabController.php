@@ -3,14 +3,21 @@
 namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
-use App\Models\BebasLab;
+use App\Http\Services\BebasLabService;
 use Illuminate\Http\Request;
 
 class BebasLabController extends Controller
 {
+    protected $bebasLabService;
+
+    public function __construct(BebasLabService $bebasLabService)
+    {
+        $this->bebasLabService = $bebasLabService;
+    }
+
     public function index()
     {
-        $bebasLab = BebasLab::where('id_user', auth()->user()->id)->first();
+        $bebasLab = $this->bebasLabService->getBebasLabByUser(auth()->user()->id);
 
         if ($bebasLab) {
             return view('mahasiswa.bebas-lab', [
@@ -22,7 +29,7 @@ class BebasLabController extends Controller
 
     public function upload()
     {
-        $bebasLab = BebasLab::where('id_user', auth()->user()->id)->first();
+        $bebasLab = $this->bebasLabService->getBebasLabByUser(auth()->user()->id);
 
         if (!$bebasLab || $bebasLab->status == "ditolak") {
             return view('mahasiswa.bebas-lab-upload');
@@ -32,26 +39,12 @@ class BebasLabController extends Controller
 
     public function store(Request $request)
     {
-        $path = public_path('f/bebaslab/'. auth()->user()->nim);
-        $slip = $request->file('bukti-bayar');
-        $slipName = 'slip-'.time().'.'.$slip->extension();
+        $result = $this->bebasLabService->storeBebasLab(auth()->user(), $request);
 
-        $berkas = $request->file('berkas');
-        $berkasName = 'berkas'.time().'.'.$berkas->extension();
-
-        $bebasLab = new BebasLab();
-        $bebasLab->id_user = auth()->user()->id;
-        $bebasLab->bukti_bayar = $slipName;
-        $bebasLab->berkas = $berkasName;
-        $bebasLab->status = 'pending';
-        if ($request->catatan) {
-            $bebasLab->catatan = $request->catatan;
+        if ($result['status'] == "success") {
+            return redirect()->route('bebas-lab');
         }
-        $bebasLab->save();
 
-        $berkas->move($path, $berkasName);
-        $slip->move($path, $slipName);
-
-        return redirect()->route('bebas-lab');
+        return redirect()->back()->with($result['status'], $result['message']);
     }
 }

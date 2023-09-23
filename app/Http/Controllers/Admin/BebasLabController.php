@@ -3,17 +3,24 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\BebasLabService;
 use App\Models\BebasLab;
 use Illuminate\Http\Request;
 
 class BebasLabController extends Controller
 {
+    protected $bebasLabService;
+
+    public function __construct(BebasLabService $bebasLabService) {
+        $this->bebasLabService = $bebasLabService;
+    }
+
     public function bebasLab($status)
     {
         if ($status == "pending") {
-            $pengajuan = BebasLab::where('status', 'pending')->get();
+            $pengajuan = $this->bebasLabService->getPendingBebasLab();
         } else {
-            $pengajuan = BebasLab::where('status', 'selesai')->orWhere('status', 'ditolak')->get();
+            $pengajuan = $this->bebasLabService->getNotPendingBebasLab();
         }
         return view('admin.bebas-lab', [
             'daftarPengajuan' => $pengajuan

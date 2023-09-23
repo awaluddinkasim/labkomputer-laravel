@@ -38,3 +38,13 @@
         </div>
     </section>
 @endsection
+
+@if (Session::has('failed'))
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Gagal!',
+        text: '{{ Session::get('failed') }}'
+    })
+</script>
+@endif
