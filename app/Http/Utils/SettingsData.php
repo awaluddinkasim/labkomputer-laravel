@@ -19,12 +19,22 @@ class SettingsData {
             ];
         } catch (QueryException $e) {
             $data = [
-                'semester' => 'ganjil',
-                'upload' => 'closed',
+                'semester' => [
+                    'value' => 'ganjil'
+                ],
+                'upload' => [
+                    'value' => 'closed'
+                ],
 
-                'kepala_lab' => '08xxxxxxxxxx',
-                'asisten1' => '08xxxxxxxxxx',
-                'asisten2' => '08xxxxxxxxxx',
+                'kepala_lab' => [
+                    'value' => '08xxxxxxxxxx'
+                ],
+                'asisten1' => [
+                    'value' => '08xxxxxxxxxx'
+                ],
+                'asisten2' => [
+                    'value' => '08xxxxxxxxxx'
+                ],
             ];
         }
 
