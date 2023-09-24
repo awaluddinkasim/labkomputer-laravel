@@ -38,7 +38,7 @@ class BebasLabRepository
         $berkas = $data->file('berkas');
         $berkasName = 'berkas-' . time() . '.' . $berkas->extension();
 
-        $bebasLab = $this->bebasLab->where('id_user', $user->id)->first();
+        $bebasLab = $user->bebasLab;
         if ($bebasLab) {
             $bebasLab->delete();
         }
