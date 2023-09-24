@@ -18,7 +18,14 @@ class SettingsData {
                 'asisten2' => Setting::where('name', 'asisten2')->first(),
             ];
         } catch (QueryException $e) {
-            $data = [];
+            $data = [
+                'semester' => 'ganjil',
+                'upload' => 'closed',
+
+                'kepala_lab' => '08xxxxxxxxxx',
+                'asisten1' => '08xxxxxxxxxx',
+                'asisten2' => '08xxxxxxxxxx',
+            ];
         }
 
         return $data;
