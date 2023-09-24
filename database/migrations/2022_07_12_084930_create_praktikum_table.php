@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->integer('semester');
-            $table->enum('kategori', ['Ganjil', 'Genap']);
+            $table->enum('kategori', ['ganjil', 'genap']);
             $table->foreignId('id_prodi');
             $table->timestamps();
 
