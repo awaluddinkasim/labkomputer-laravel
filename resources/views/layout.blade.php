@@ -67,9 +67,9 @@
                             <div class="col-sm-6">
                                 <select class="custom-select mr-sm-2" id="semester" name="semester" required>
                                     <option selected hidden value="">Pilih</option>
-                                    <option value="ganjil" {{ $settings['semester']->value == 'ganjil' ? 'selected' : '' }}>
+                                    <option value="ganjil" {{ $settings['semester']['value'] == 'ganjil' ? 'selected' : '' }}>
                                         Ganjil</option>
-                                    <option value="genap" {{ $settings['semester']->value == 'genap' ? 'selected' : '' }}>
+                                    <option value="genap" {{ $settings['semester']['value'] == 'genap' ? 'selected' : '' }}>
                                         Genap</option>
                                 </select>
                             </div>
@@ -80,9 +80,9 @@
                             <div class="col-sm-6">
                                 <select class="custom-select mr-sm-2" id="upload" name="upload" required>
                                     <option selected hidden value="">Pilih</option>
-                                    <option value="open" {{ $settings['upload']->value == 'open' ? 'selected' : '' }}>
+                                    <option value="open" {{ $settings['upload']['value'] == 'open' ? 'selected' : '' }}>
                                         Upload Terbuka</option>
-                                    <option value="closed" {{ $settings['upload']->value == 'closed' ? 'selected' : '' }}>
+                                    <option value="closed" {{ $settings['upload']['value'] == 'closed' ? 'selected' : '' }}>
                                         Upload Tertutup</option>
                                 </select>
                             </div>
@@ -97,7 +97,7 @@
                                     <span class="input-group-text">+62</span>
                                 </div>
                                 <input type="text" class="form-control" id="kepala_lab" name="kepala_lab"
-                                    autocomplete="off" value="{{ $settings['kepala_lab']->value }}" required>
+                                    autocomplete="off" value="{{ $settings['kepala_lab']['value'] }}" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -107,7 +107,7 @@
                                     <span class="input-group-text">+62</span>
                                 </div>
                                 <input type="text" class="form-control" id="asisten1" name="asisten1"
-                                    autocomplete="off" value="{{ $settings['asisten1']->value }}" required>
+                                    autocomplete="off" value="{{ $settings['asisten1']['value'] }}" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -117,7 +117,7 @@
                                     <span class="input-group-text">+62</span>
                                 </div>
                                 <input type="text" class="form-control" id="asisten2" name="asisten2"
-                                    autocomplete="off" value="{{ $settings['asisten2']->value }}" required>
+                                    autocomplete="off" value="{{ $settings['asisten2']['value'] }}" required>
                             </div>
                         </div>
                     </div>
