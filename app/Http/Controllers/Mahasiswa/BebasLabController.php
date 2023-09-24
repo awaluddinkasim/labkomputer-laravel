@@ -17,7 +17,7 @@ class BebasLabController extends Controller
 
     public function index()
     {
-        $bebasLab = $this->bebasLabService->getBebasLabByUser(auth()->user()->id);
+        $bebasLab = auth()->user()->bebasLab;
 
         if ($bebasLab) {
             return view('mahasiswa.bebas-lab', [
@@ -29,7 +29,7 @@ class BebasLabController extends Controller
 
     public function upload()
     {
-        $bebasLab = $this->bebasLabService->getBebasLabByUser(auth()->user()->id);
+        $bebasLab = auth()->user()->bebasLab;
 
         if (!$bebasLab || $bebasLab->status == "ditolak") {
             return view('mahasiswa.bebas-lab-upload');

@@ -29,11 +29,6 @@ class BebasLabRepository
         return $this->bebasLab->find($id);
     }
 
-    public function getByUser($id)
-    {
-        return $this->bebasLab->where('id_user', $id)->first();
-    }
-
     public function store($user, $data)
     {
         $path = public_path('f/bebaslab/' . $user->nim);
@@ -43,7 +38,7 @@ class BebasLabRepository
         $berkas = $data->file('berkas');
         $berkasName = 'berkas-' . time() . '.' . $berkas->extension();
 
-        $bebasLab = $this->getByUser($user->id);
+        $bebasLab = $this->bebasLab->where('id_user', $user->id)->first();
         if ($bebasLab) {
             $bebasLab->delete();
         }
