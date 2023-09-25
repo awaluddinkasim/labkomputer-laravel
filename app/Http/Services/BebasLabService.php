@@ -28,11 +28,6 @@ class BebasLabService
         return $this->bebasLabRepository->getById($id);
     }
 
-    public function getBebasLabByUser($id)
-    {
-        return $this->bebasLabRepository->getByUser($id);
-    }
-
     public function storeBebasLab($user, $data)
     {
         try {
