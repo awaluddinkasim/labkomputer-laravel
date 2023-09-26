@@ -80,7 +80,7 @@
     <script>
         Swal.fire({
             icon: 'error',
-            title: 'Berhasil!',
+            title: 'Gagal!',
             text: '{{ Session::get('failed') }}'
         })
     </script>
