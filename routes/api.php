@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\BebasLabController;
 use App\Http\Controllers\API\InformasiController;
 use App\Http\Controllers\API\PasswordController;
 use App\Http\Controllers\API\PraktikumController;
@@ -31,6 +32,9 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::delete('/praktikum', [PraktikumController::class, 'hapusPraktikum']);
 
     Route::post('/slip', [UploadBerkasController::class, 'slip']);
+
+    Route::get('/bebas-lab', [BebasLabController::class, 'get']);
+    Route::post('/bebas-lab', [BebasLabController::class, 'store']);
 
     Route::get('/logout', [AuthController::class, 'logout']);
 });
