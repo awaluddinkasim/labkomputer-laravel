@@ -9,6 +9,7 @@ use App\Http\Controllers\API\InformasiController;
 use App\Http\Controllers\API\PasswordController;
 use App\Http\Controllers\API\PraktikumController;
 use App\Http\Controllers\API\RegisterController;
+use App\Http\Controllers\API\SlipPraktikumController;
 use App\Http\Controllers\API\UploadBerkasController;
 
 Route::get('/data', [ApiController::class, 'data']);
@@ -31,7 +32,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::post('/praktikum', [PraktikumController::class, 'tambahPraktikum']);
     Route::delete('/praktikum', [PraktikumController::class, 'hapusPraktikum']);
 
-    Route::post('/slip', [UploadBerkasController::class, 'slip']);
+    Route::post('/slip', [SlipPraktikumController::class, 'store']);
 
     Route::get('/bebas-lab', [BebasLabController::class, 'get']);
     Route::post('/bebas-lab', [BebasLabController::class, 'store']);
