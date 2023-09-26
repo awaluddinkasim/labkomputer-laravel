@@ -10,7 +10,6 @@ use App\Http\Controllers\API\PasswordController;
 use App\Http\Controllers\API\PraktikumController;
 use App\Http\Controllers\API\RegisterController;
 use App\Http\Controllers\API\SlipPraktikumController;
-use App\Http\Controllers\API\UploadBerkasController;
 
 Route::get('/data', [ApiController::class, 'data']);
 
