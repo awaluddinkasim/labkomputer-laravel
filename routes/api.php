@@ -22,7 +22,6 @@ Route::middleware('auth:sanctum')->group(function() {
         ]);
     });
 
-    Route::post('/validate-pass', [PasswordController::class, 'validatePassword']);
     Route::put('/update-pass', [PasswordController::class, 'updatePassword']);
 
     Route::get('/informasi', [InformasiController::class, 'daftarInformasi']);

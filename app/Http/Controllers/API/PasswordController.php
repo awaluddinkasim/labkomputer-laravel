@@ -9,9 +9,13 @@ use Illuminate\Support\Facades\Hash;
 
 class PasswordController extends Controller
 {
-    public function validatePassword(Request $request)
+    public function updatePassword(Request $request)
     {
-        if (Hash::check($request->password, $request->user()->password)) {
+        if (Hash::check($request->old_password, $request->user()->password)) {
+            $mhs = User::find($request->user()->id);
+            $mhs->password = bcrypt($request->new_password);
+            $mhs->update();
+
             return response()->json([
                 'message' => 'berhasil'
             ], 200);
@@ -20,16 +24,5 @@ class PasswordController extends Controller
                 'message' => 'Password yang kamu masukkan salah.'
             ], 401);
         }
-    }
-
-    public function updatePassword(Request $request)
-    {
-        $mhs = User::find($request->user()->id);
-        $mhs->password = bcrypt($request->password);
-        $mhs->update();
-
-        return response()->json([
-            'message' => 'berhasil'
-        ], 200);
     }
 }
