@@ -31,12 +31,6 @@
                                         value="{{ auth()->user()->nama }}" autocomplete="off" required>
                                 </div>
                                 <div class="form-group">
-                                    <label class="mb-0" for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password"
-                                        value="">
-                                    <small id="passHelp" class="form-text text-muted">Kosongkan jika tidak ingin mengganti password</small>
-                                </div>
-                                <div class="form-group">
                                     <label class="mb-0" for="prodi">Program Studi</label>
                                     <select class="custom-select mr-sm-2" id="prodi" name="prodi" required>
                                         <option selected hidden value="">Pilih</option>

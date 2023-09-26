@@ -56,9 +56,6 @@ class ProfileRepository {
 
         $mhs = $this->user::find($id);
         $mhs->nama = $data->nama;
-        if ($data->password) {
-            $mhs->password = $data->password;
-        }
         $mhs->id_prodi = $data->prodi;
         $mhs->no_hp = $data->hp;
         if ($foto) {
