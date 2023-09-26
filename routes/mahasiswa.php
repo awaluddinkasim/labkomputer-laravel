@@ -8,6 +8,7 @@ use App\Http\Controllers\Mahasiswa\ProfileController;
 use App\Http\Controllers\Mahasiswa\PraktikumController;
 use App\Http\Controllers\Asisten\SlipPraktikumController;
 use App\Http\Controllers\Mahasiswa\BebasLabController;
+use App\Http\Controllers\Mahasiswa\PasswordController;
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [PagesController::class, 'dashboard'])->name('dashboard');
@@ -41,6 +42,9 @@ Route::group(['middleware' => 'auth'], function () {
     // Akun
     Route::get('/profil', [ProfileController::class, 'edit'])->name('profil');
     Route::put('/profil', [ProfileController::class, 'update'])->name('profil-update');
+
+    Route::get('/new-password', [PasswordController::class, 'index'])->name('password');
+    Route::put('/new-password', [PasswordController::class, 'update'])->name('password.update');
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });

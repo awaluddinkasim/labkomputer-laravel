@@ -84,4 +84,16 @@ class MahasiswaService
 
         return $result;
     }
+
+    public function updatePasswordMahasiswa($id, $data)
+    {
+        try {
+            return $this->mahasiswaRepository->updatePassword($id, $data);
+        } catch (\Throwable $th) {
+            return [
+                'status' => 'failed',
+                'message' => 'Terjadi kesalahan',
+            ];
+        }
+    }
 }

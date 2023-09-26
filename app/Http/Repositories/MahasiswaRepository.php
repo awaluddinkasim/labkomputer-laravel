@@ -2,10 +2,11 @@
 
 namespace App\Http\Repositories;
 
-use App\Models\DataPraktikan;
-use App\Models\Rejected;
 use App\Models\User;
+use App\Models\Rejected;
+use App\Models\DataPraktikan;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class MahasiswaRepository
 {
@@ -20,14 +21,16 @@ class MahasiswaRepository
         $this->dataPraktikan = $dataPraktikan;
     }
 
-    public function get($except) {
+    public function get($except)
+    {
         if ($except) {
             return $this->mahasiswa::whereNot('id', auth()->user()->id)->orderBy('active')->orderBy('nim')->get();
         }
         return $this->mahasiswa::orderBy('active')->orderBy('nim')->get();
     }
 
-    public function getActive() {
+    public function getActive()
+    {
         return $this->mahasiswa::where('active', '1')->get();
     }
 
@@ -112,6 +115,24 @@ class MahasiswaRepository
         return [
             'status' => 'success',
             'message' => 'Akun berhasil dihapus',
+        ];
+    }
+
+    public function updatePassword($id, $data)
+    {
+        $user = User::find($id);
+        if (Hash::check($data->old_password, $user->password)) {
+            $user->password = bcrypt($data->new_password);
+            $user->update();
+
+            return [
+                'status' => 'success',
+                'message' => 'Ganti password berhasil'
+            ];
+        }
+        return [
+            'status' => 'failed',
+            'message' => 'Password salah'
         ];
     }
 }

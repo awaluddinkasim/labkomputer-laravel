@@ -15,6 +15,10 @@
                     <ion-icon name="person-outline"></ion-icon>
                     Edit Profile
                 </a>
+                <a href="{{ route('password') }}" class="dropdown-item has-icon">
+                    <ion-icon name="key-outline"></ion-icon>
+                    Ganti Password
+                </a>
                 <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger">
                     <ion-icon name="exit-outline"></ion-icon>
                     Logout
