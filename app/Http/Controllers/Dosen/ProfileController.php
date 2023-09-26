@@ -23,6 +23,6 @@ class ProfileController extends Controller
     {
         $result = $this->profileService->updateDosen(auth()->user()->id, $request);
 
-        return redirect()->with($result['status'], $result['message']);
+        return redirect()->back()->with($result['status'], $result['message']);
     }
 }

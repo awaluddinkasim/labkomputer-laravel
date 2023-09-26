@@ -47,3 +47,24 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    @if (Session::has('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ Session::get('success') }}'
+        })
+    </script>
+    @endif
+    @if (Session::has('failed'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal!',
+            text: '{{ Session::get('failed') }}'
+        })
+    </script>
+    @endif
+@endpush

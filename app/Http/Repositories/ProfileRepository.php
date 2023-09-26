@@ -45,7 +45,17 @@ class ProfileRepository {
     }
 
     public function updateDosen($id, $data) {
+        $dosen = $this->dosen::find($id);
+        $dosen->nama = $data->nama;
+        if ($data->password) {
+            $dosen->password = bcrypt($data->password);
+        }
+        $dosen->update();
 
+        return [
+            'status' => 'success',
+            'message' => 'Update profil berhasil'
+        ];
     }
 
     public function updateMahasiswa($id, $data) {
