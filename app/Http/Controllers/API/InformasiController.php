@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 class InformasiController extends Controller
 {
-    public function daftarInformasi()
+    public function get()
     {
         $data = [
             'daftarInformasi' => Informasi::whereBetween('created_at', [Carbon::now()->subMonth(6), Carbon::now()])->orderBy('created_at', 'DESC')->get()

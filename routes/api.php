@@ -26,7 +26,7 @@ Route::middleware('auth:sanctum')->group(function() {
 
     Route::put('/update-pass', [PasswordController::class, 'updatePassword']);
 
-    Route::get('/informasi', [InformasiController::class, 'daftarInformasi']);
+    Route::get('/informasi', [InformasiController::class, 'get']);
 
     Route::get('/praktikum/{jenis?}', [PraktikumController::class, 'daftarPraktikum']);
     Route::post('/praktikum', [PraktikumController::class, 'tambahPraktikum']);
