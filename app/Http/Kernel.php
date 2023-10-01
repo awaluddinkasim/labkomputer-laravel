@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'asisten' => \App\Http\Middleware\AsistenLab::class,
         'ajax' => \App\Http\Middleware\RedirectIfNotAjax::class,
+        'api_key' => \App\Http\Middleware\ApiKeyMiddleware::class,
     ];
 }
