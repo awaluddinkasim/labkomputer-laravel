@@ -17,11 +17,11 @@ class PasswordController extends Controller
             $mhs->update();
 
             return response()->json([
-                'message' => 'berhasil'
+                'message' => 'Password berhasil diganti'
             ], 200);
         } else {
             return response()->json([
-                'message' => 'Password yang kamu masukkan salah.'
+                'message' => 'Password Anda masukkan salah.'
             ], 401);
         }
     }
