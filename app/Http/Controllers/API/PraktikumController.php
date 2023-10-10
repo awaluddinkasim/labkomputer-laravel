@@ -14,25 +14,8 @@ class PraktikumController extends Controller
 {
     public function daftarPraktikum(Request $request)
     {
-        // if (!$jenis) {
-        //     $data = [
-        //         'daftarPraktikum' => Praktikum::where('id_prodi', $request->user()->id_prodi)->get()
-        //     ];
-        // } else {
-        //     if ($jenis == "mahasiswa") {
-        //         $data = [
-        //             'daftarPraktikum' => DataPraktikan::where('id_user', $request->user()->id)->get()->sortBy(['praktikum.semester', 'praktikum.nama'])
-        //         ];
-        //     } elseif ($jenis == "semester") {
-        //         $semester = Setting::where('name', 'semester')->first()->value;
-        //         $data = [
-        //             'daftarPraktikum' => Praktikum::has('pengampu')->where('id_prodi', $request->user()->id_prodi)->where('kategori', $semester)->get()
-        //         ];
-        //     } else {
-        //         $data = [];
-        //     }
-        // }
         $data = [
+            'message' => 'berhasil',
             'daftarPraktikumMahasiswa' => DataPraktikan::where('id_user', $request->user()->id)->get()->sortBy(['praktikum.semester', 'praktikum.nama']),
             'daftarPraktikum' => Praktikum::has('pengampu')->where('id_prodi', $request->user()->id_prodi)->where('kategori', SettingsData::get()['semester']['value'])->get(),
         ];
@@ -49,11 +32,16 @@ class PraktikumController extends Controller
             $data->id_praktikum = $request->praktikum;
             $data->nidn_dosen = $request->dosen;
             $data->save();
+
+            return response()->json([
+                'message' => 'berhasil',
+                'daftarPraktikum' => DataPraktikan::where('id_user', $request->user()->id)->get()->sortBy(['praktikum.semester', 'praktikum.nama'])
+            ], 200);
         }
 
         return response()->json([
-            'daftarPraktikum' => DataPraktikan::where('id_user', $request->user()->id)->get()->sortBy(['praktikum.semester', 'praktikum.nama'])
-        ], 200);
+            'message' => 'Praktikum sudah ada',
+        ], 409);
     }
 
     public function hapusPraktikum(Request $request)
@@ -65,6 +53,7 @@ class PraktikumController extends Controller
         $data->delete();
 
         return response()->json([
+            'message' => 'berhasil',
             'daftarPraktikum' => DataPraktikan::where('id_user', $request->user()->id)->get()->sortBy(['praktikum.semester', 'praktikum.nama'])
         ], 200);
     }
