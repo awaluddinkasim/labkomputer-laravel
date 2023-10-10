@@ -7,30 +7,35 @@ use App\Models\Praktikum;
 use Illuminate\Http\Request;
 use App\Models\DataPraktikan;
 use App\Http\Controllers\Controller;
+use App\Http\Utils\SettingsData;
 use Illuminate\Support\Facades\File;
 
 class PraktikumController extends Controller
 {
-    public function daftarPraktikum(Request $request, $jenis = null)
+    public function daftarPraktikum(Request $request)
     {
-        if (!$jenis) {
-            $data = [
-                'daftarPraktikum' => Praktikum::where('id_prodi', $request->user()->id_prodi)->get()
-            ];
-        } else {
-            if ($jenis == "mahasiswa") {
-                $data = [
-                    'daftarPraktikum' => DataPraktikan::where('id_user', $request->user()->id)->get()->sortBy(['praktikum.semester', 'praktikum.nama'])
-                ];
-            } elseif ($jenis == "semester") {
-                $semester = Setting::where('name', 'semester')->first()->value;
-                $data = [
-                    'daftarPraktikum' => Praktikum::has('pengampu')->where('id_prodi', $request->user()->id_prodi)->where('kategori', $semester)->get()
-                ];
-            } else {
-                $data = [];
-            }
-        }
+        // if (!$jenis) {
+        //     $data = [
+        //         'daftarPraktikum' => Praktikum::where('id_prodi', $request->user()->id_prodi)->get()
+        //     ];
+        // } else {
+        //     if ($jenis == "mahasiswa") {
+        //         $data = [
+        //             'daftarPraktikum' => DataPraktikan::where('id_user', $request->user()->id)->get()->sortBy(['praktikum.semester', 'praktikum.nama'])
+        //         ];
+        //     } elseif ($jenis == "semester") {
+        //         $semester = Setting::where('name', 'semester')->first()->value;
+        //         $data = [
+        //             'daftarPraktikum' => Praktikum::has('pengampu')->where('id_prodi', $request->user()->id_prodi)->where('kategori', $semester)->get()
+        //         ];
+        //     } else {
+        //         $data = [];
+        //     }
+        // }
+        $data = [
+            'daftarPraktikumMahasiswa' => DataPraktikan::where('id_user', $request->user()->id)->get()->sortBy(['praktikum.semester', 'praktikum.nama']),
+            'daftarPraktikum' => Praktikum::has('pengampu')->where('id_prodi', $request->user()->id_prodi)->where('kategori', SettingsData::get()['semester']['value'])->get(),
+        ];
 
         return response()->json($data, 200);
     }
