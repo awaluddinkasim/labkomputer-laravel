@@ -159,6 +159,27 @@
             });
         </script>
     @endif
+    @if (Auth::guard('admin')->check())
+        @if (Session::has('settings-saved'))
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Berhasil!',
+                    text: '{{ Session::get('settings-saved') }}'
+                })
+            </script>
+        @endif
+        @if (Session::has('settings-failed'))
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: '{{ Session::get('settings-failed') }}'
+                })
+            </script>
+        @endif
+    @endif
+
     @stack('scripts')
 </body>
 

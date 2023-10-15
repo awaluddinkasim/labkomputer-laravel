@@ -25,7 +25,7 @@ class PengaturanService {
             return $this->pengaturanRepository->save($data);
         } catch (\Throwable $th) {
             return [
-                'status' => 'failed',
+                'status' => 'settings-failed',
                 'message' => 'Terjadi kesalahan'
             ];
         }

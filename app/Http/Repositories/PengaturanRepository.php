@@ -40,7 +40,7 @@ class PengaturanRepository {
         }
 
         return [
-            'status' => 'success',
+            'status' => 'settings-saved',
             'message' => 'Pengaturan tersimpan'
         ];
     }
