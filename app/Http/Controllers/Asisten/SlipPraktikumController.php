@@ -19,8 +19,8 @@ class SlipPraktikumController extends Controller
 
     public function show(Request $request)
     {
-        if ($request->has('p')) {
-            $praktikum = $this->praktikumService->getPraktikumById($request->p);
+        if ($request->has('id')) {
+            $praktikum = $this->praktikumService->getPraktikumById($request->id);
 
             $data = [
                 'praktikum' => $praktikum->nama,

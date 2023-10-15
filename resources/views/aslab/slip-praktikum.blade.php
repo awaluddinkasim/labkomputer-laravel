@@ -21,7 +21,7 @@
                         </thead>
                         <tbody>
                             @forelse ($daftarData as $data)
-                                <tr onclick="document.location.href = '{{ route('asisten.slip') }}?p={{ $data->praktikum->id }}'">
+                                <tr onclick="document.location.href = '{{ route('asisten.slip') }}?id={{ $data->praktikum->id }}'">
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $data->praktikum->nama }}</td>
                                     <td data-toggle="tooltip" data-placement="top" title="NIDN: {{ $data->nidn_dosen }}">
