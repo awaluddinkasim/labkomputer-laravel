@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Events\UserRegistered;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -21,7 +22,7 @@ class RegisterController extends Controller
             $mhs->nim = $request->nim;
             $mhs->nama = $request->nama;
             $mhs->no_hp = "0".$request->no_hp;
-            $mhs->password = bcrypt($request->password);
+            $mhs->password = Hash::make($request->password);
             $mhs->foto = $filename;
             $mhs->id_prodi = $request->id_prodi;
             $mhs->save();

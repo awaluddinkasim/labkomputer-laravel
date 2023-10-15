@@ -13,7 +13,7 @@ class PasswordController extends Controller
     {
         if (Hash::check($request->old_password, $request->user()->password)) {
             $mhs = User::find($request->user()->id);
-            $mhs->password = bcrypt($request->new_password);
+            $mhs->password = Hash::make($request->new_password);
             $mhs->update();
 
             return response()->json([

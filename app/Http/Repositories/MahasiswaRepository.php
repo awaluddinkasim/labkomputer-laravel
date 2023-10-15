@@ -82,7 +82,7 @@ class MahasiswaRepository
             $mhs->level = $data->level;
         }
         if ($data->password) {
-            $mhs->password = bcrypt($data->password);
+            $mhs->password = Hash::make($data->password);
         }
         $mhs->update();
 
@@ -122,7 +122,7 @@ class MahasiswaRepository
     {
         $user = User::find($id);
         if (Hash::check($data->old_password, $user->password)) {
-            $user->password = bcrypt($data->new_password);
+            $user->password = Hash::make($data->new_password);
             $user->update();
 
             return [

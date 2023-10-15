@@ -6,6 +6,7 @@ use App\Models\Dosen;
 use App\Models\DataPengampu;
 use App\Models\DataPraktikan;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class DosenRepository
 {
@@ -33,7 +34,7 @@ class DosenRepository
         $dosen = new Dosen();
         $dosen->nidn = $data->nidn;
         $dosen->nama = $data->nama;
-        $dosen->password = bcrypt($data->password);
+        $dosen->password = Hash::make($data->password);
         $dosen->save();
 
         return [
@@ -56,7 +57,7 @@ class DosenRepository
         $dosen->nidn = $data->nidn;
         $dosen->nama = $data->nama;
         if ($data->password) {
-            $dosen->password = bcrypt($data->password);
+            $dosen->password = Hash::make($data->password);
         }
         $dosen->update();
 

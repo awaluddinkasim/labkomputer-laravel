@@ -7,6 +7,7 @@ use App\Models\Admin;
 use App\Models\Dosen;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileRepository {
     protected $admin;
@@ -25,7 +26,7 @@ class ProfileRepository {
             $admin->email = $data->email;
             $admin->nama = $data->nama;
             if ($data->password) {
-                $admin->password = bcrypt($data->password);
+                $admin->password = Hash::make($data->password);
             }
             $admin->update();
 
@@ -48,7 +49,7 @@ class ProfileRepository {
         $dosen = $this->dosen::find($id);
         $dosen->nama = $data->nama;
         if ($data->password) {
-            $dosen->password = bcrypt($data->password);
+            $dosen->password = Hash::make($data->password);
         }
         $dosen->update();
 

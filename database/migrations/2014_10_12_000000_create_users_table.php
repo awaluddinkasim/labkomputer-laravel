@@ -3,6 +3,7 @@
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -36,7 +37,7 @@ return new class extends Migration
         $user->nim = "18024014111";
         $user->nama = "Awaluddin Kasim";
         $user->no_hp = "082191952371";
-        $user->password = bcrypt('123');
+        $user->password = Hash::make('123');
         $user->id_prodi = 1;
         $user->active = '1';
         $user->save();
