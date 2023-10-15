@@ -20,7 +20,13 @@ class SlipPraktikumController extends Controller
     public function show(Request $request)
     {
         if ($request->has('id')) {
-            $praktikum = $this->praktikumService->getPraktikumById($request->id);
+            try {
+                $decrypted = $request->id;
+            } catch (\Throwable $th) {
+                return redirect()->back();
+            }
+
+            $praktikum = $this->praktikumService->getPraktikumById($decrypted);
 
             $data = [
                 'praktikum' => $praktikum->nama,
