@@ -9,6 +9,27 @@ use App\Http\Controllers\Controller;
 
 class SlipPraktikumController extends Controller
 {
+    public function get(Request $request)
+    {
+        if ($request->has('praktikum')) {
+            $data = DataPraktikan::where('id_praktikum', $request->praktikum)->where('id_user', $request->user()->id)->first();
+
+            if ($data->slip) {
+                return response()->json([
+                    'slip' => $data->slip
+                ], 200);
+            } else {
+                return response()->json([
+                    'message' => 'Belum upload slip',
+                ], 200);
+            }
+        } else {
+            return response()->json([
+                'message' => 'Terjadi kesalahan',
+            ], 400);
+        }
+    }
+
     public function store(Request $request)
     {
         $data = DataPraktikan::find($request->id);

@@ -11,14 +11,14 @@ use App\Http\Controllers\API\PraktikumController;
 use App\Http\Controllers\API\RegisterController;
 use App\Http\Controllers\API\SlipPraktikumController;
 
-Route::middleware('api_key')->group(function() {
+Route::middleware('api_key')->group(function () {
     Route::get('/data', [ApiController::class, 'data']);
 
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [RegisterController::class, 'register']);
 
-    Route::middleware('auth:sanctum')->group(function() {
-        Route::get('/me', function(Request $request) {
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/me', function (Request $request) {
             return response()->json([
                 'user' => $request->user()
             ]);
@@ -32,6 +32,7 @@ Route::middleware('api_key')->group(function() {
         Route::post('/praktikum', [PraktikumController::class, 'tambahPraktikum']);
         Route::delete('/praktikum', [PraktikumController::class, 'hapusPraktikum']);
 
+        Route::get('/slip', [SlipPraktikumController::class, 'get']);
         Route::post('/slip', [SlipPraktikumController::class, 'store']);
 
         Route::get('/bebas-lab', [BebasLabController::class, 'get']);
