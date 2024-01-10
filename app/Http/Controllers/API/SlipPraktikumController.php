@@ -38,8 +38,13 @@ class SlipPraktikumController extends Controller
         $extension = $file->extension();
         $filename = $data->praktikan->nim . '-' . time() . '.' . $extension;
 
+        $slip = Slip::where('id_data', $data->id)->first();
+        if ($slip) {
+            $slip->delete();
+        }
+
         $slip = new Slip();
-        $slip->id_data = $request->id;
+        $slip->id_data = $data->id;
         $slip->slip = $filename;
         $slip->nominal = $request->nominal;
         $slip->tgl_slip = $request->tgl;
