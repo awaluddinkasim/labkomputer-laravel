@@ -17,7 +17,7 @@ class PraktikumController extends Controller
         $data = [
             'message' => 'berhasil',
             'daftarPraktikumMahasiswa' => DataPraktikan::where('id_user', $request->user()->id)->get()->sortBy(['praktikum.semester', 'praktikum.nama']),
-            'daftarPraktikum' => Praktikum::has('pengampu')->where('id_prodi', $request->user()->id_prodi)->where('kategori', SettingsData::get()['semester']['value'])->get(),
+            'daftarPraktikum' => Praktikum::has('pengampu')->where('id_prodi', $request->user()->id_prodi)->where('kategori', SettingsData::get()['semester']['value'])->orderBy('semester')->get(),
         ];
 
         return response()->json($data, 200);
@@ -48,7 +48,7 @@ class PraktikumController extends Controller
     {
         $data = DataPraktikan::find($request->id);
         if ($data->slip) {
-            File::delete(public_path('f/slip/'.$data->praktikum->prodi->nama.'/'.$data->praktikum->nama.'/'.$data->slip->slip));
+            File::delete(public_path('f/slip/' . $data->praktikum->prodi->nama . '/' . $data->praktikum->nama . '/' . $data->slip->slip));
         }
         $data->delete();
 
