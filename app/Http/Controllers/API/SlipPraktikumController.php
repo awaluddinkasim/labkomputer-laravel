@@ -6,6 +6,7 @@ use App\Models\Slip;
 use Illuminate\Http\Request;
 use App\Models\DataPraktikan;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class SlipPraktikumController extends Controller
 {
@@ -40,6 +41,7 @@ class SlipPraktikumController extends Controller
 
         $slip = Slip::where('id_data', $data->id)->first();
         if ($slip) {
+            File::delete(public_path('f/slip/' . $data->praktikum->prodi->nama . '/' . $data->praktikum->nama . '/' . $slip->slip));
             $slip->delete();
         }
 
