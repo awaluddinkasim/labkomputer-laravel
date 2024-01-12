@@ -18,6 +18,9 @@
 
         img {
             display: block;
+            max-width: 20.2cm;
+            max-height: 47%;
+            padding-bottom: 10px;
         }
 
         .page-break {
@@ -43,13 +46,7 @@
             </tr>
             <tr>
                 <td colspan="2" style="text-align: center">
-                    <div style="max-height: 47%; margin-top: 50px; padding-bottom: 10px;">
-                        <span>
-                            <img src="{{ $image }}" alt="" {!! isset($portrait)
-                                ? 'style="-webkit-transform:rotate(-90deg); -moz-transform:rotate(-90deg); -o-transform: rotate(-90deg); transform: rotate(90deg); max-height: 20.2cm; max-width: 47%;"'
-                                : 'style="max-width: 20.2cm; max-height: 47%;"' !!}>
-                        </span>
-                    </div>
+                    <img src="{{ $image }}" alt="">
                 </td>
             </tr>
             <div class="page-break"></div>
