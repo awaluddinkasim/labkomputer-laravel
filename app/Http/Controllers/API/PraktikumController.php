@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\File;
 
 class PraktikumController extends Controller
 {
-    public function daftarPraktikum(Request $request)
+    public function get(Request $request)
     {
         $data = [
             'message' => 'berhasil',
@@ -23,7 +23,7 @@ class PraktikumController extends Controller
         return response()->json($data, 200);
     }
 
-    public function tambahPraktikum(Request $request)
+    public function store(Request $request)
     {
         $check = DataPraktikan::where('id_user', $request->user()->id)->where('id_praktikum', $request->praktikum)->first();
         if (!$check) {
@@ -44,7 +44,7 @@ class PraktikumController extends Controller
         ], 409);
     }
 
-    public function hapusPraktikum(Request $request)
+    public function delete(Request $request)
     {
         $data = DataPraktikan::find($request->id);
         if ($data->slip) {

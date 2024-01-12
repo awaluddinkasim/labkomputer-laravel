@@ -28,9 +28,9 @@ Route::middleware('api_key')->group(function () {
 
         Route::get('/informasi', [InformasiController::class, 'get']);
 
-        Route::get('/praktikum', [PraktikumController::class, 'daftarPraktikum']);
-        Route::post('/praktikum', [PraktikumController::class, 'tambahPraktikum']);
-        Route::delete('/praktikum', [PraktikumController::class, 'hapusPraktikum']);
+        Route::get('/praktikum', [PraktikumController::class, 'get']);
+        Route::post('/praktikum', [PraktikumController::class, 'store']);
+        Route::delete('/praktikum', [PraktikumController::class, 'delete']);
 
         Route::get('/slip', [SlipPraktikumController::class, 'get']);
         Route::post('/slip', [SlipPraktikumController::class, 'store']);
