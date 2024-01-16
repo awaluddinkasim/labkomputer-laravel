@@ -52,7 +52,6 @@ class MahasiswaRepository
         ];
     }
 
-
     public function tolak($id)
     {
         $mhs = $this->mahasiswa::find($id);
@@ -72,8 +71,46 @@ class MahasiswaRepository
         ];
     }
 
+    public function store($data)
+    {
+        if ($data->has('foto') && $data->foto) {
+            $foto = $data->file('foto');
+            $filename = 'mhs-' . uniqid() . '.' . $foto->extension();
+        } else {
+            return [
+                'status' => 'failed',
+                'message' => 'Foto tidak ditemukan'
+            ];
+        }
+
+        $mhs = new User();
+        $mhs->nim = $data->nim;
+        $mhs->nama = $data->nama;
+        $mhs->no_hp = $data->no_hp;
+        $mhs->id_prodi = $data->prodi;
+        $mhs->password = Hash::make($data->password);
+        if (isset($foto)) {
+            if ($mhs->foto != "default.png") {
+                File::delete(public_path('f/avatar/' . $mhs->foto));
+            }
+            $mhs->foto = $filename;
+            $foto->move(public_path('f/avatar'), $filename);
+        }
+        $mhs->save();
+
+        return [
+            'status' => 'success',
+            'message' => 'Berhasil mendaftar'
+        ];
+    }
+
     public function update($data, $id, $isAdmin)
     {
+        if ($data->has('foto') && $data->foto) {
+            $foto = $data->file('foto');
+            $filename = 'mhs-' . uniqid() . '.' . $foto->extension();
+        }
+
         $mhs = $this->mahasiswa->find($id);
         $mhs->nama = $data->nama;
         $mhs->no_hp = $data->no_hp;
@@ -81,8 +118,15 @@ class MahasiswaRepository
             $mhs->id_prodi = $data->prodi;
             $mhs->level = $data->level;
         }
-        if ($data->password) {
+        if ($data->has('password') && $data->password) {
             $mhs->password = Hash::make($data->password);
+        }
+        if (isset($foto)) {
+            if ($mhs->foto != "default.png") {
+                File::delete(public_path('f/avatar/' . $mhs->foto));
+            }
+            $mhs->foto = $filename;
+            $foto->move(public_path('f/avatar'), $filename);
         }
         $mhs->update();
 

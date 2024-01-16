@@ -48,7 +48,14 @@ class PraktikumService
             ];
         }
 
-        $result = $this->praktikumRepository->save($data);
+        try {
+            $result = $this->praktikumRepository->save($data);
+        } catch (\Throwable $th) {
+            return [
+                'status' => 'failed',
+                'message' => 'Terjadi kesalahan'
+            ];
+        }
 
         return $result;
     }

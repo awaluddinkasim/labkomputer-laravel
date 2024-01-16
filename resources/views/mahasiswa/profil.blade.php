@@ -18,7 +18,8 @@
                             @method('PUT')
                             <div class="card-body">
                                 <div class="text-center mb-4">
-                                    <img src="{{ asset('f/avatar/' . auth()->user()->foto) }}" alt="" class="pict-oval">
+                                    <img src="{{ asset('f/avatar/' . auth()->user()->foto) }}" alt=""
+                                        class="pict-oval">
                                 </div>
                                 <div class="form-group">
                                     <label class="mb-0" for="nim">Nomor Induk Mahasiswa</label>
@@ -36,23 +37,26 @@
                                         <option selected hidden value="">Pilih</option>
                                         @foreach ($daftarFakultas as $fakultas)
                                             @if ($fakultas->prodi->count())
-                                            <optgroup label="Fakultas {{ $fakultas->nama }}">
-                                                @foreach ($fakultas->prodi as $prodi)
-                                                    <option value="{{ $prodi->id }}" {{ auth()->user()->id_prodi == $prodi->id ? 'selected' : '' }}>{{ $prodi->nama }}</option>
-                                                @endforeach
-                                            </optgroup>
+                                                <optgroup label="Fakultas {{ $fakultas->nama }}">
+                                                    @foreach ($fakultas->prodi as $prodi)
+                                                        <option value="{{ $prodi->id }}"
+                                                            {{ auth()->user()->id_prodi == $prodi->id ? 'selected' : '' }}>
+                                                            {{ $prodi->nama }}</option>
+                                                    @endforeach
+                                                </optgroup>
                                             @endif
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label class="mb-0" for="hp">No. Handphone</label>
-                                    <input type="text" class="form-control" id="hp" name="hp"
+                                    <label class="mb-0" for="no_hp">No. Handphone</label>
+                                    <input type="text" class="form-control" id="no_hp" name="no_hp"
                                         value="{{ auth()->user()->no_hp }}" autocomplete="off" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="mb-0" for="foto">Ganti Foto</label>
-                                    <input type="file" class="form-control" id="foto" name="foto" accept=".jpg, .jpeg, .png">
+                                    <input type="file" class="form-control" id="foto" name="foto"
+                                        accept=".jpg, .jpeg, .png">
                                 </div>
                             </div>
                             <div class="card-footer text-right pb-4">
@@ -68,21 +72,21 @@
 
 @push('scripts')
     @if (Session::has('success'))
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Berhasil!',
-            text: '{{ Session::get('success') }}'
-        })
-    </script>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ Session::get('success') }}'
+            })
+        </script>
     @endif
     @if (Session::has('failed'))
-    <script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Gagal!',
-            text: '{{ Session::get('failed') }}'
-        })
-    </script>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: '{{ Session::get('failed') }}'
+            })
+        </script>
     @endif
 @endpush

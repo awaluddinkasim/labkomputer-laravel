@@ -6,23 +6,15 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use App\Http\Services\InformasiService;
-use App\Http\Services\PraktikumService;
-use App\Http\Services\PengaturanService;
+use App\Models\DataPraktikan;
 
 class PagesController extends Controller
 {
     protected $informasiService;
-    protected $praktikumService;
-    protected $pengaturanService;
 
-    public function __construct(
-        InformasiService $informasiService,
-        PraktikumService $praktikumService,
-        PengaturanService $pengaturanService
-    ) {
+    public function __construct(InformasiService $informasiService)
+    {
         $this->informasiService = $informasiService;
-        $this->praktikumService = $praktikumService;
-        $this->pengaturanService = $pengaturanService;
 
         $unverifiedUser = User::where('active', '0')->get();
 
@@ -31,7 +23,11 @@ class PagesController extends Controller
 
     public function dashboard()
     {
-        return view('mahasiswa.dashboard');
+        $data = [
+            'slip' => DataPraktikan::where('id_user', auth()->user()->id)->has('slip')->get()->count(),
+        ];
+
+        return view('mahasiswa.dashboard', $data);
     }
 
     public function informasi()
@@ -41,16 +37,5 @@ class PagesController extends Controller
         ];
 
         return view('mahasiswa.informasi', $data);
-    }
-
-    public function slip()
-    {
-        $semester = $this->pengaturanService->getSemesterSekarang();
-        $data = [
-            'daftarData' => auth()->user()->praktikum,
-            'daftarPraktikum' => $this->praktikumService->getPraktikumWithPengampu(auth()->user()->id_prodi, $semester ? $semester->value : 'ganjil')
-        ];
-
-        return view('mahasiswa.slip', $data);
     }
 }

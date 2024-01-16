@@ -3,15 +3,17 @@
 namespace App\Http\Controllers\Dosen;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\DosenService;
 use App\Http\Services\ProfileService;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    private $profileService;
+    private $dosenService;
 
-    public function __construct(ProfileService $profileService) {
-        $this->profileService = $profileService;
+    public function __construct(DosenService $dosenService)
+    {
+        $this->dosenService = $dosenService;
     }
 
     public function edit()
@@ -21,7 +23,7 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        $result = $this->profileService->updateDosen(auth()->user()->id, $request);
+        $result = $this->dosenService->updateData($request, auth()->user()->id);
 
         return redirect()->back()->with($result['status'], $result['message']);
     }

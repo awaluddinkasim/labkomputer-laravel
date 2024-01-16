@@ -18,7 +18,8 @@
                             @method('PUT')
                             <div class="card-body">
                                 <div class="text-center mb-4">
-                                    <img src="{{ asset('f/avatar/' . auth()->user()->foto) }}" alt="" class="pict-oval">
+                                    <img src="{{ asset('f/avatar/' . auth()->user()->foto) }}" alt=""
+                                        class="pict-oval">
                                 </div>
                                 <div class="form-group">
                                     <label class="mb-0" for="nidn">Nomor Induk Dosen Nasional</label>
@@ -33,8 +34,9 @@
                                 <div class="form-group">
                                     <label class="mb-0" for="password">Password</label>
                                     <input type="password" class="form-control" id="password" name="password"
-                                        value="">
-                                    <small id="passHelp" class="form-text text-muted">Kosongkan jika tidak ingin mengganti password</small>
+                                        minlength="6" value="">
+                                    <small id="passHelp" class="form-text text-muted">Kosongkan jika tidak ingin mengganti
+                                        password</small>
                                 </div>
                             </div>
                             <div class="card-footer text-right pb-4">
@@ -50,21 +52,21 @@
 
 @push('scripts')
     @if (Session::has('success'))
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Berhasil!',
-            text: '{{ Session::get('success') }}'
-        })
-    </script>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ Session::get('success') }}'
+            })
+        </script>
     @endif
     @if (Session::has('failed'))
-    <script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Gagal!',
-            text: '{{ Session::get('failed') }}'
-        })
-    </script>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: '{{ Session::get('failed') }}'
+            })
+        </script>
     @endif
 @endpush

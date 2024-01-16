@@ -15,13 +15,14 @@ class DataPraktikanService
         $this->dataPraktikanRepository = $repository;
     }
 
-    public function getAll() {
+    public function getAll()
+    {
         return $this->dataPraktikanRepository->get();
     }
 
     public function getDataById($id)
     {
-        $this->dataPraktikanRepository->getById($id);
+        return $this->dataPraktikanRepository->getById($id);
     }
 
     public function storeData($id, $data)

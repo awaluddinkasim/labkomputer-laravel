@@ -43,7 +43,7 @@
     @endif
 
     <div class="card card-login">
-        <div class="card-body px-5 py-4">
+        <div class="card-body px-5 py-5 py-md-4 ">
             <div class="row">
                 <div class="col-lg-8 d-none d-lg-flex justify-content-center">
                     <img src="{{ asset('assets/img/login.svg') }}" alt="img" class="w-75">
@@ -68,9 +68,17 @@
                             <label class="form-check-label" for="remember" name="remember">Remember me</label>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Login</button>
-                        <button type="button" class="btn btn-info btn-block"
-                            onclick="document.location.href = '{{ route('dosen.login') }}'">Login Dosen</button>
+                        <div class="text-center">
+                            <a href="{{ route('register') }}" class="btn btn-link">Daftar</a>
+                        </div>
                     </form>
+
+                    <hr>
+
+                    <button type="button" class="btn btn-info btn-block"
+                        onclick="document.location.href = '{{ route('dosen.login') }}'">Login Dosen</button>
+
+
                 </div>
             </div>
             <div class="small text-muted text-center mt-3 d-md-block d-none">
@@ -88,12 +96,22 @@
 
     <script src="{{ asset('assets/plugins/jquery/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.js') }}"></script>
+    <script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
+    @if (Session::has('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ Session::get('success') }}'
+            })
+        </script>
+    @endif
     @if (Session::has('failed'))
-    <script>
-        $(document).ready(function() {
-            $('#liveToast').toast('show');
-        });
-    </script>
+        <script>
+            $(document).ready(function() {
+                $('#liveToast').toast('show');
+            });
+        </script>
     @endif
 </body>
 

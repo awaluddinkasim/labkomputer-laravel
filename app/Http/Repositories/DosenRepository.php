@@ -47,24 +47,21 @@ class DosenRepository
     {
         $dosen = $this->getById($id);
 
-        $nidn = $dosen->nidn;
-        if ($nidn != $data->nidn) {
-            DataPraktikan::where('nidn_dosen', $nidn)->update([
-                'nidn_dosen' => $data->nidn,
-                'updated_at' => now()
-            ]);
+        if ($data->has('nidn')) {
+            $nidn = $dosen->nidn;
+            if ($nidn != $data->nidn) {
+                DataPraktikan::where('nidn_dosen', $nidn)->update([
+                    'nidn_dosen' => $data->nidn,
+                    'updated_at' => now()
+                ]);
+            }
+            $dosen->nidn = $data->nidn;
         }
-        $dosen->nidn = $data->nidn;
         $dosen->nama = $data->nama;
         if ($data->password) {
             $dosen->password = Hash::make($data->password);
         }
         $dosen->update();
-
-        DataPraktikan::where('nidn_dosen', $dosen->nidn)->update([
-            'nidn_dosen' => $data->nidn,
-            'updated_at' => now()
-        ]);
 
         return [
             'status' => 'success',

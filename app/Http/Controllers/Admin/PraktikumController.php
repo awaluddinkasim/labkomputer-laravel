@@ -18,17 +18,15 @@ class PraktikumController extends Controller
         $this->fakultasService = $fakultasService;
     }
 
-    public function store(Request $request) {
-        try {
-            $result = $this->praktikumService->storeData($request);
+    public function store(Request $request)
+    {
+        $result = $this->praktikumService->storeData($request);
 
-            return redirect()->back()->with($result['status'], $result['message']);
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('failed', 'Terjadi kesalahan');
-        }
+        return redirect()->back()->with($result['status'], $result['message']);
     }
 
-    public function edit(Request $request) {
+    public function edit(Request $request)
+    {
         $data = [
             'daftarFakultas' => $this->fakultasService->getAllFakultas(),
             'praktikum' => $this->praktikumService->getPraktikumById($request->id)
@@ -37,7 +35,8 @@ class PraktikumController extends Controller
         return view('admin.master-praktikum-edit', $data);
     }
 
-    function update(Request $request) {
+    function update(Request $request)
+    {
         try {
             $result = $this->praktikumService->updateData($request);
 
@@ -47,7 +46,8 @@ class PraktikumController extends Controller
         }
     }
 
-    public function delete(Request $request) {
+    public function delete(Request $request)
+    {
         try {
             $result = $this->praktikumService->deletePraktikum($request->id);
 

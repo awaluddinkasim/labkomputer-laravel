@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Asisten;
 use App\Http\Controllers\Controller;
 use App\Http\Services\DataPraktikanService;
 use App\Http\Services\PraktikumService;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
 
 class SlipPraktikumController extends Controller
@@ -12,7 +13,8 @@ class SlipPraktikumController extends Controller
     protected $praktikumService;
     protected $dataPraktikanService;
 
-    public function __construct(PraktikumService $praktikumService, DataPraktikanService $dataPraktikanService) {
+    public function __construct(PraktikumService $praktikumService, DataPraktikanService $dataPraktikanService)
+    {
         $this->praktikumService = $praktikumService;
         $this->dataPraktikanService = $dataPraktikanService;
     }
@@ -21,8 +23,8 @@ class SlipPraktikumController extends Controller
     {
         if ($request->has('id')) {
             try {
-                $decrypted = $request->id;
-            } catch (\Throwable $th) {
+                $decrypted = decrypt($request->id);
+            } catch (DecryptException $th) {
                 return redirect()->back();
             }
 

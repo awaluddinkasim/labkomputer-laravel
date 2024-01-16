@@ -17,12 +17,12 @@
                                 <div class="form-group">
                                     <label class="mb-0" for="old_password">Password Lama</label>
                                     <input type="password" class="form-control" id="old_password" name="old_password"
-                                        required>
+                                        minlength="6" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="mb-0" for="new_password">Password Baru</label>
                                     <input type="password" class="form-control" id="new_password" name="new_password"
-                                        required>
+                                        minlength="6" required>
                                 </div>
                                 <button class="btn btn-primary btn-block">Submit</button>
                             </form>

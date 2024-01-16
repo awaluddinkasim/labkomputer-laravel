@@ -57,6 +57,27 @@ class MahasiswaService
         }
     }
 
+    public function storeData($data)
+    {
+        try {
+            $result = $this->mahasiswaRepository->store($data);
+
+            return $result;
+        } catch (QueryException $e) {
+            $errorCode = $e->errorInfo[1];
+            if ($errorCode == 1062) {
+                return [
+                    'status' => 'failed',
+                    'message' => 'Gagal, Akun dengan NIM tersebut sudah terdaftar',
+                ];
+            }
+            return [
+                'status' => 'failed',
+                'message' => 'Terjadi kesalahan',
+            ];
+        }
+    }
+
     public function updateData($data, $id, $isAdmin = false)
     {
         try {

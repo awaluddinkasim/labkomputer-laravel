@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Services\ProfileService;
+use App\Http\Services\AdminService;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    protected $profileService;
+    protected $adminService;
 
-    public function __construct(ProfileService $profileService) {
-        $this->profileService = $profileService;
+    public function __construct(AdminService $adminService)
+    {
+        $this->adminService = $adminService;
     }
 
     public function edit()
@@ -21,7 +22,7 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        $result = $this->profileService->updateAdmin(auth()->user()->id, $request);
+        $result = $this->adminService->updateAdmin(auth()->user()->id, $request);
 
         return redirect()->back()->with($result['status'], $result['message']);
     }

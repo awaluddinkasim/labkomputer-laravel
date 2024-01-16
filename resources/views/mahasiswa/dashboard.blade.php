@@ -18,7 +18,7 @@
                                 <h4>Jumlah Praktikum</h4>
                             </div>
                             <div class="card-body">
-                                <span>0</span>
+                                <span>{{ auth()->user()->praktikum->count() }}</span>
                             </div>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                                 <h4>Slip Terupload</h4>
                             </div>
                             <div class="card-body">
-                                <span>0</span>
+                                <span>{{ $slip }}</span>
                             </div>
                         </div>
                     </div>
@@ -42,4 +42,3 @@
         </div>
     </section>
 @endsection
-

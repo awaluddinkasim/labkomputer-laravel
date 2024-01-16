@@ -4,17 +4,18 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Mahasiswa\AuthController;
 use App\Http\Controllers\Mahasiswa\PagesController;
 use App\Http\Controllers\Asisten\MahasiswaController;
-use App\Http\Controllers\Mahasiswa\ProfileController;
+use App\Http\Controllers\Mahasiswa\UserController;
 use App\Http\Controllers\Mahasiswa\PraktikumController;
 use App\Http\Controllers\Asisten\SlipPraktikumController;
 use App\Http\Controllers\Mahasiswa\BebasLabController;
 use App\Http\Controllers\Mahasiswa\PasswordController;
+use App\Http\Controllers\Mahasiswa\SlipController;
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [PagesController::class, 'dashboard'])->name('dashboard');
 
     // Asisten
-    Route::middleware("asisten")->as("asisten.")->group(function() {
+    Route::middleware("asisten")->as("asisten.")->group(function () {
         Route::get('/asisten/mahasiswa', [MahasiswaController::class, 'show'])->name('daftar-mahasiswa');
 
         Route::get('/asisten/mahasiswa/{id}', [MahasiswaController::class, 'detail'])->name('mahasiswa-detail');
@@ -29,10 +30,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/informasi', [PagesController::class, 'informasi'])->name('informasi');
 
     // Slip Praktikum
-    Route::get('/slip', [PagesController::class, 'slip'])->name('slip');
+    Route::get('/slip', [SlipController::class, 'slip'])->name('slip');
+    Route::post('/slip', [SlipController::class, 'store'])->name('slip.store');
 
-    Route::post('/slip', [PraktikumController::class, 'tambahPraktikum'])->name('tambah-praktikum');
-    Route::delete('/slip', [PraktikumController::class, 'hapusPraktikum'])->name('hapus-praktikum');
+    Route::post('/slip/praktikum', [PraktikumController::class, 'tambahPraktikum'])->name('tambah-praktikum');
+    Route::delete('/slip/praktikum', [PraktikumController::class, 'hapusPraktikum'])->name('hapus-praktikum');
 
     // Bebas Lab
     Route::get('/bebas-lab', [BebasLabController::class, 'index'])->name('bebas-lab');
@@ -40,8 +42,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/bebas-lab/upload', [BebasLabController::class, 'store'])->name('bebas-lab.store');
 
     // Akun
-    Route::get('/profil', [ProfileController::class, 'edit'])->name('profil');
-    Route::put('/profil', [ProfileController::class, 'update'])->name('profil-update');
+    Route::get('/profil', [UserController::class, 'edit'])->name('profil');
+    Route::put('/profil', [UserController::class, 'update'])->name('profil-update');
 
     Route::get('/new-password', [PasswordController::class, 'index'])->name('password');
     Route::put('/new-password', [PasswordController::class, 'update'])->name('password.update');
