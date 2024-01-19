@@ -145,9 +145,8 @@
                             <div id="pertanyaan1" class="collapse collapsed" aria-labelledby="headingOne"
                                 data-parent="#questions">
                                 <div class="card-body">
-                                    <p class="mb-2">Silahkan install <b>aplikasi android Lab Komputer</b> untuk
-                                        melakukan registrasi akun.</p>
-                                    <p class="mb-0">Anda tetap bisa login melalui website apabila sudah pernah mendaftar.</p>
+                                    <p class="mb-2">Silahkan masuk ke halaman Register untuk melakukan registrasi
+                                        akun.</p>
                                 </div>
                             </div>
 
@@ -183,7 +182,8 @@
                             <div id="pertanyaan2" class="collapse collapsed" aria-labelledby="headingTwo"
                                 data-parent="#questions">
                                 <div class="card-body">
-                                    <p class="mb-0">Silahkan <b>daftar ulang</b> melalui aplikasi dan perhatikan dengan baik data yang Anda masukkan.</p>
+                                    <p class="mb-0">Silahkan <b>daftar ulang</b> melalui aplikasi dan perhatikan
+                                        dengan baik data yang Anda masukkan.</p>
                                 </div>
                             </div>
 
