@@ -182,7 +182,7 @@
                             <div id="pertanyaan2" class="collapse collapsed" aria-labelledby="headingTwo"
                                 data-parent="#questions">
                                 <div class="card-body">
-                                    <p class="mb-0">Silahkan <b>daftar ulang</b> melalui aplikasi dan perhatikan
+                                    <p class="mb-0">Silahkan <b>daftar ulang</b> dan perhatikan
                                         dengan baik data yang Anda masukkan.</p>
                                 </div>
                             </div>
