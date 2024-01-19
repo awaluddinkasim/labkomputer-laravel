@@ -7,12 +7,12 @@
         </div>
 
         @if (Session::has('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ Session::get('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ Session::get('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         @endif
 
         <div class="section-body">
@@ -34,25 +34,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($daftarUser as $user)
+                            @foreach ($daftarUser->sortBy('level') as $user)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $user->nim }}</td>
-                                    <td>{{ $user->nama }}</td>
+                                    <td>
+                                        {{ $user->nama }}
+                                        {!! $user->level == 'asisten' ? '<span class="ml-1 badge badge-pill badge-success">Asisten</span>' : '' !!}
+                                    </td>
                                     <td>{{ $user->no_hp }}</td>
                                     <td>{!! $user->active
                                         ? '<span class="text-success">Terverifikasi</span>'
                                         : '<span class="text-danger">Pending</span>' !!}</td>
                                     <td class="text-center">
-                                        <button class="btn btn-primary btn-sm" onclick="document.location.href = '{{ route('admin.mhs-detail', $user->id) }}'">
+                                        <button class="btn btn-primary btn-sm"
+                                            onclick="document.location.href = '{{ route('admin.mhs-detail', $user->id) }}'">
                                             <ion-icon name="open"></ion-icon>
                                         </button>
                                         @if ($user->active)
                                             <button class="btn btn-danger btn-sm" onclick="deleteData({{ $user->id }})">
                                                 <ion-icon name="trash"></ion-icon>
                                             </button>
-                                            <form action="{{ route('admin.mhs-delete') }}" class="d-inline"
-                                                method="POST" id="formDelete{{ $user->id }}">
+                                            <form action="{{ route('admin.mhs-delete') }}" class="d-inline" method="POST"
+                                                id="formDelete{{ $user->id }}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input type="hidden" name="id" value="{{ $user->id }}">
@@ -88,7 +92,9 @@
             if ($('#pending').length > 1) {
                 $('.pending').text(data.totalUnverified);
             } else {
-                $('#pending').html('<button class="btn btn-primary btn-block mb-3" onclick="window.location.reload()">Tampilkan <span class="pending">' + data.totalUnverified + '</span> akun Mahasiswa terbaru</button>');
+                $('#pending').html(
+                    '<button class="btn btn-primary btn-block mb-3" onclick="window.location.reload()">Tampilkan <span class="pending">' +
+                    data.totalUnverified + '</span> akun Mahasiswa terbaru</button>');
             }
         });
 
