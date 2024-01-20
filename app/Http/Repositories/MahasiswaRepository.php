@@ -2,6 +2,7 @@
 
 namespace App\Http\Repositories;
 
+use App\Events\UserRegistered;
 use App\Models\User;
 use App\Models\Rejected;
 use App\Models\DataPraktikan;
@@ -83,7 +84,7 @@ class MahasiswaRepository
             ];
         }
 
-        $mhs = new User();
+        $mhs = new $this->mahasiswa();
         $mhs->nim = $data->nim;
         $mhs->nama = $data->nama;
         $mhs->no_hp = "0" . $data->no_hp;
@@ -97,6 +98,9 @@ class MahasiswaRepository
             $foto->move(public_path('f/avatar'), $filename);
         }
         $mhs->save();
+
+        $unverifiedUser = $this->mahasiswa::where('active', '0')->get()->count();
+        event(new UserRegistered($unverifiedUser));
 
         return [
             'status' => 'success',
