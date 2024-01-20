@@ -145,7 +145,7 @@
         @if (Session::has('settings-saved'))
             <script>
                 Swal.fire({
-                    icon: 'error',
+                    icon: 'success',
                     title: 'Berhasil!',
                     text: '{{ Session::get('settings-saved') }}'
                 })
