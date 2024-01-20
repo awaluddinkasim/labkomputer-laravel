@@ -15,13 +15,13 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $foto = $request->file('foto');
-        $filename = 'mhs-'.uniqid().'.'.$foto->extension();
+        $filename = 'mhs-' . uniqid() . '.' . $foto->extension();
 
         try {
             $mhs = new User();
             $mhs->nim = $request->nim;
             $mhs->nama = $request->nama;
-            $mhs->no_hp = "0".$request->no_hp;
+            $mhs->no_hp = substr($request->no_hp, 0, 2) == "08" ? $request->no_hp : "0" . $request->no_hp;
             $mhs->password = Hash::make($request->password);
             $mhs->foto = $filename;
             $mhs->id_prodi = $request->id_prodi;
@@ -52,5 +52,4 @@ class RegisterController extends Controller
             ], 400);
         }
     }
-
 }
