@@ -53,7 +53,7 @@
                 <div class="form-group">
                     <label class="mb-0" for="nama">Nama</label>
                     <input type="text" class="form-control" id="nama" name="nama" autocomplete="off"
-                        required>
+                        autocapitalize="word" required>
                 </div>
                 <div class="form-group">
                     <label class="mb-0" for="prodi">Program Studi</label>
@@ -71,11 +71,14 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
-                    <label class="mb-0" for="no_hp">No. Handphone</label>
-                    <input type="text" class="form-control" id="no_hp" name="no_hp" autocomplete="off"
-                        required>
+                <label for="no_hp">No. Handphone</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="hp">+62</span>
+                    </div>
+                    <input type="text" class="form-control" id="no_hp" name="no_hp" aria-describedby="hp">
                 </div>
+
                 <div class="form-group">
                     <label class="mb-0" for="password">Password</label>
                     <input type="password" class="form-control" id="password" name="password" minlength="6" required>
