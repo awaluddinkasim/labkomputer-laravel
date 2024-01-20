@@ -34,7 +34,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($daftarUser->sortBy('level') as $user)
+                            @foreach ($daftarUser->sortBy(['active', 'level']) as $user)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $user->nim }}</td>
