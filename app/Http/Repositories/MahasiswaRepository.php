@@ -86,7 +86,7 @@ class MahasiswaRepository
         $mhs = new User();
         $mhs->nim = $data->nim;
         $mhs->nama = $data->nama;
-        $mhs->no_hp = $data->no_hp;
+        $mhs->no_hp = "0" . $data->no_hp;
         $mhs->id_prodi = $data->prodi;
         $mhs->password = Hash::make($data->password);
         if (isset($foto)) {
