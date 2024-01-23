@@ -12,7 +12,8 @@ class MahasiswaController extends Controller
     protected $mahasiswaService;
     protected $fakultasService;
 
-    public function __construct(MahasiswaService $mahasiswaService, FakultasService $fakultasService) {
+    public function __construct(MahasiswaService $mahasiswaService, FakultasService $fakultasService)
+    {
         $this->mahasiswaService = $mahasiswaService;
         $this->fakultasService = $fakultasService;
     }
