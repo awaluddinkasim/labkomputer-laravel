@@ -30,8 +30,11 @@
 </head>
 
 <body>
-    <table class="table">
-        @foreach ($daftarSlip as $slip)
+    @foreach ($daftarSlip as $slip)
+        @if ($loop->iteration % 2 != 0 && $loop->iteration != 1)
+            <div class="page-break"></div>
+        @endif
+        <table class="table">
             @php
                 $image = public_path('f/slip/' . $slip->dataPraktikan->praktikum->prodi->nama . '/' . str_replace('/', '-', $slip->dataPraktikan->praktikum->nama) . '/' . $slip->slip);
                 $imageSize = getimagesize($image);
@@ -49,9 +52,8 @@
                     <img src="{{ $image }}" alt="">
                 </td>
             </tr>
-            <div class="page-break"></div>
-        @endforeach
-    </table>
+        </table>
+    @endforeach
 </body>
 
 </html>
