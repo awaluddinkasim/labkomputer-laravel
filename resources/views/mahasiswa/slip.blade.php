@@ -120,6 +120,8 @@
                                                                             <input type="file" class="form-control"
                                                                                 id="slip{{ $loop->iteration }}" name="slip"
                                                                                 accept=".jpeg, .jpg, .png" required>
+                                                                            <small class="form-text text-muted">Ukuran maksimal
+                                                                                2 MB</small>
                                                                         </div>
                                                                     </div>
                                                                     <div class="modal-footer">
@@ -232,6 +234,19 @@
                 });
             }
         }
+
+        $('#slip').on('change', function() {
+            const size = (this.files[0].size / 1024 / 1024).toFixed(2)
+
+            if (size > 2) {
+                $('#slip').val(null)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: 'Ukuran gambar terlalu besar'
+                })
+            }
+        })
     </script>
 
     @if (Session::has('success'))

@@ -57,6 +57,7 @@
                                     <label class="mb-0" for="foto">Ganti Foto</label>
                                     <input type="file" class="form-control" id="foto" name="foto"
                                         accept=".jpg, .jpeg, .png">
+                                    <small class="form-text text-muted">Ukuran maksimal 2 MB</small>
                                 </div>
                             </div>
                             <div class="card-footer text-right pb-4">
@@ -71,6 +72,20 @@
 @endsection
 
 @push('scripts')
+    <script>
+        $('#foto').on('change', function() {
+            const size = (this.files[0].size / 1024 / 1024).toFixed(2)
+
+            if (size > 2) {
+                $('#foto').val(null)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: 'Ukuran gambar terlalu besar'
+                })
+            }
+        })
+    </script>
     @if (Session::has('success'))
         <script>
             Swal.fire({

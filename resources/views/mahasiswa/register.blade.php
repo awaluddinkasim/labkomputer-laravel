@@ -86,6 +86,7 @@
                 <div class="form-group">
                     <label class="mb-0" for="foto">Foto</label>
                     <input type="file" class="form-control" id="foto" name="foto" accept=".jpg, .jpeg, .png">
+                    <small class="form-text text-muted">Ukuran maksimal 2 MB</small>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Daftar</button>
             </form>
@@ -105,6 +106,21 @@
 
     <script src="{{ asset('assets/plugins/jquery/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.js') }}"></script>
+    <script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
+    <script>
+        $('#foto').on('change', function() {
+            const size = (this.files[0].size / 1024 / 1024).toFixed(2)
+
+            if (size > 2) {
+                $('#foto').val(null)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: 'Ukuran gambar terlalu besar'
+                })
+            }
+        })
+    </script>
     @if (Session::has('failed'))
         <script>
             $(document).ready(function() {
