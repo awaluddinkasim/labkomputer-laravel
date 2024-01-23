@@ -37,7 +37,7 @@
         </div>
     @endif
 
-    <div class="card my-5">
+    <div class="card my-5" style="width: 400px">
         <div class="card-body px-5 py-5 py-md-4">
 
             <div class="text-center my-3">
