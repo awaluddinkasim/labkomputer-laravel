@@ -30,7 +30,7 @@ class SlipRepository
         $slip = new Slip();
         $slip->id_data = $dp->id;
         $slip->slip = $filename;
-        $slip->nominal = $data->nominal;
+        $slip->nominal = str_replace('.', '', $data->nominal);
         $slip->tgl_slip = $data->tgl;
         $slip->save();
 
