@@ -85,7 +85,8 @@
                 </div>
                 <div class="form-group">
                     <label class="mb-0" for="foto">Foto</label>
-                    <input type="file" class="form-control" id="foto" name="foto" accept=".jpg, .jpeg, .png">
+                    <input type="file" class="form-control" id="foto" name="foto" accept=".jpg, .jpeg, .png"
+                        required>
                     <small class="form-text text-muted">Ukuran maksimal 2 MB</small>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Daftar</button>
@@ -109,6 +110,17 @@
     <script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
     <script>
         $('#foto').on('change', function() {
+            var fileExtension = ['jpeg', 'jpg', 'png'];
+            if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+                $('#foto').val(null)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: 'Jenis file tidak valid'
+                })
+                return
+            }
+
             const size = (this.files[0].size / 1024 / 1024).toFixed(2)
 
             if (size > 2) {

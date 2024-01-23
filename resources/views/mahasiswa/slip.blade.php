@@ -236,6 +236,17 @@
         }
 
         $('#slip').on('change', function() {
+            var fileExtension = ['jpeg', 'jpg', 'png'];
+            if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+                $('#foto').val(null)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: 'Jenis file tidak valid'
+                })
+                return
+            }
+
             const size = (this.files[0].size / 1024 / 1024).toFixed(2)
 
             if (size > 2) {
