@@ -76,7 +76,8 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="hp">+62</span>
                     </div>
-                    <input type="text" class="form-control" id="no_hp" name="no_hp" aria-describedby="hp">
+                    <input type="text" class="form-control" id="no_hp" name="no_hp" aria-describedby="hp"
+                        required>
                 </div>
 
                 <div class="form-group">
