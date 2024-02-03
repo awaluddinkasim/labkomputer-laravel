@@ -235,7 +235,7 @@
             }
         }
 
-        $('#slip').on('change', function() {
+        $('input[name="slip"]').on('change', function() {
             var fileExtension = ['jpeg', 'jpg', 'png'];
             if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
                 $('#foto').val(null)
@@ -244,7 +244,6 @@
                     title: 'Gagal!',
                     text: 'Jenis file tidak valid'
                 })
-                return
             }
 
             const size = (this.files[0].size / 1024 / 1024).toFixed(2)
@@ -253,8 +252,8 @@
                 $('#slip').val(null)
                 Swal.fire({
                     icon: 'error',
-                    title: 'Gagal!',
-                    text: 'Ukuran gambar terlalu besar'
+                    title: 'Ukuran terlalu besar!',
+                    text: 'Pastikan ukuran gambar tidak lebih dari 2 MB'
                 })
             }
         })

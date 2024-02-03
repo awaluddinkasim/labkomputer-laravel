@@ -14,16 +14,24 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
+                            <div class="alert alert-info mb-4" role="alert">
+                                <h4 class="alert-heading">Informasi!</h4>
+                                <p class="mb-0">Halaman ini hanya ditujukan untuk mahasiswa akhir yang memerlukan
+                                    keterangan bebas lab. komputer sebagai syarat kelengkapan ujian.</p>
+                            </div>
                             <form action="{{ route('bebas-lab.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="bukti-bayar" class="form-label">Bukti Pembayaran (.pdf)</label>
-                                    <input type="file" class="form-control" id="bukti-bayar" name="bukti-bayar" accept=".pdf" required>
+                                    <input type="file" class="form-control" id="bukti-bayar" name="bukti-bayar"
+                                        accept=".pdf" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="berkas" class="form-label">Berkas (.pdf)</label>
-                                    <input type="file" class="form-control" id="berkas" name="berkas" accept=".pdf" required>
-                                    <small id="noteHelp" class="form-text text-danger">* Pastikan terdapat Slip Praktikum, KRS, dan KHS yang menampilkan nilai lulus dari setiap praktikum</small>
+                                    <input type="file" class="form-control" id="berkas" name="berkas" accept=".pdf"
+                                        required>
+                                    <small id="noteHelp" class="form-text text-danger">* Pastikan terdapat Slip Praktikum,
+                                        KRS, dan KHS yang menampilkan nilai lulus dari setiap praktikum</small>
                                 </div>
                                 <div class="mb-3">
                                     <label for="catatan" class="form-label">Catatan (opsional)</label>
@@ -40,11 +48,11 @@
 @endsection
 
 @if (Session::has('failed'))
-<script>
-    Swal.fire({
-        icon: 'error',
-        title: 'Gagal!',
-        text: '{{ Session::get('failed') }}'
-    })
-</script>
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal!',
+            text: '{{ Session::get('failed') }}'
+        })
+    </script>
 @endif

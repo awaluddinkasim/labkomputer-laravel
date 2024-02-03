@@ -40,9 +40,7 @@ class PraktikumRepository
 
         $path = public_path('f/slip/' . $prak->prodi->nama . '/' . str_replace('/', '-', $prak->nama));
 
-        if (!File::exists($path)) {
-            File::makeDirectory($path, 0777, true);
-        }
+        File::makeDirectory($path, 0777, true);
 
         return [
             'status' => 'success',

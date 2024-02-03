@@ -33,9 +33,7 @@ class ProdiRepository
 
         $path = public_path('f/slip/' . $prodi->nama);
 
-        if(!File::exists($path)) {
-            File::makeDirectory($path);
-        }
+        File::makeDirectory($path, 0777, true);
 
         return [
             'status' => 'success',

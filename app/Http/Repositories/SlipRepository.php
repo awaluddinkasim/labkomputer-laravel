@@ -23,7 +23,7 @@ class SlipRepository
 
         $slip = Slip::where('id_data', $dp->id)->first();
         if ($slip) {
-            File::delete(public_path('f/slip/' . $dp->praktikum->prodi->nama . '/' . $dp->praktikum->nama . '/' . $slip->slip));
+            File::delete(public_path('f/slip/' . $dp->praktikum->prodi->nama . '/' . str_replace('/', '-', $dp->praktikum->nama) . '/' . $slip->slip));
             $slip->delete();
         }
 
@@ -34,7 +34,7 @@ class SlipRepository
         $slip->tgl_slip = $data->tgl;
         $slip->save();
 
-        $file->move(public_path('f/slip/' . $dp->praktikum->prodi->nama . '/' . $dp->praktikum->nama . '/'), $filename);
+        $file->move(public_path('f/slip/' . $dp->praktikum->prodi->nama . '/' . str_replace('/', '-', $dp->praktikum->nama) . '/'), $filename);
 
         return [
             'status' => 'success',
