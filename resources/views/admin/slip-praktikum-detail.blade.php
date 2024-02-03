@@ -38,7 +38,12 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $slip->dataPraktikan->praktikan->nim }}</td>
-                                    <td>{{ $slip->dataPraktikan->praktikan->nama }}</td>
+                                    <td>
+                                        <a href="{{ route('admin.mhs-detail', $slip->dataPraktikan->praktikan->id) }}"
+                                            class="text-decoration-none" target="_blank">
+                                            {{ $slip->dataPraktikan->praktikan->nama }}
+                                        </a>
+                                    </td>
                                     <td>Rp. {{ number_format($slip->nominal) }}</td>
                                     <td>{{ $slip->tanggal_slip }}</td>
                                     <td class="text-center">

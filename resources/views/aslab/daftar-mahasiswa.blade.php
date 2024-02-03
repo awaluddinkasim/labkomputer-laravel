@@ -7,12 +7,12 @@
         </div>
 
         @if (Session::has('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ Session::get('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ Session::get('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         @endif
 
         <div class="section-body">
@@ -40,7 +40,8 @@
                                         ? '<span class="text-success">Terverifikasi</span>'
                                         : '<span class="text-danger">Pending</span>' !!}</td>
                                     <td class="text-center">
-                                        <button class="btn btn-primary btn-sm" onclick="document.location.href = '{{ route('admin.mhs-detail', $user->id) }}'">
+                                        <button class="btn btn-primary btn-sm"
+                                            onclick="document.location.href = '{{ route('asisten.mahasiswa-detail', $user->id) }}'">
                                             <ion-icon name="open"></ion-icon>
                                         </button>
                                     </td>
