@@ -22,10 +22,12 @@
                             }
                         }
                     @endphp
-                    {{-- <div class="alert alert-info d-flex align-items-center" role="alert">
-                        <i class="fas fa-info-circle"></i>
-                        <span class="ml-3">Silahkan upload slip pembayaran melalui aplikasi Android</span>
-                    </div> --}}
+                    @if ($upload == 'closed')
+                        <div class="alert alert-info" role="alert">
+                            <i class="fas fa-info-circle"></i>
+                            <span class="ml-3">Upload slip praktikum sudah tertutup</span>
+                        </div>
+                    @endif
 
                     <table id="table" class="table table-hover" style="width:100%">
                         <thead>
