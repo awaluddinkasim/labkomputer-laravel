@@ -49,14 +49,7 @@
                                     <td class="text-center">
                                         <button class="btn btn-primary btn-sm"
                                             onclick="window.open(
-                                    '{{ asset(
-                                        'f/slip/' .
-                                            $slip->dataPraktikan->praktikum->prodi->nama .
-                                            '/' .
-                                            str_replace('/', '-', $praktikum) .
-                                            '/' .
-                                            $slip->slip,
-                                    ) }}',
+                                    '{{ asset('f/slip/' . $praktikum->prodi->nama . '/' . str_replace('/', '-', $praktikum->nama) . '/' . $slip->slip) }}',
                                     '_blank'
                                 )">
                                             <ion-icon name="open"></ion-icon> Lihat
