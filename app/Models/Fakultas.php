@@ -10,7 +10,6 @@ class Fakultas extends Model
     use HasFactory;
 
     protected $table = "fakultas";
-    protected $with = ['prodi'];
 
     public function prodi()
     {

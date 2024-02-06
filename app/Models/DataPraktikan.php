@@ -10,7 +10,6 @@ class DataPraktikan extends Model
     use HasFactory;
 
     protected $table = 'data_praktikan';
-    protected $with = ['praktikum', 'pengampu', 'slip'];
 
     public function praktikan()
     {

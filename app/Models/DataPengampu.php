@@ -10,7 +10,6 @@ class DataPengampu extends Model
     use HasFactory;
 
     protected $table = 'data_pengampu';
-    protected $with = ['dosen'];
 
     public function dosen()
     {
