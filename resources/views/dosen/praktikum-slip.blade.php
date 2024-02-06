@@ -18,6 +18,10 @@
         <div class="section-body">
             <div class="card">
                 <div class="card-body">
+                    <button class="btn btn-primary mb-3"
+                        onclick="document.location.href = '{{ route('dosen.praktikum') }}'">
+                        Kembali
+                    </button>
                     <table id="table" class="table table-hover" style="width:100%">
                         <thead>
                             <tr>
@@ -55,7 +59,7 @@
                                     ) }}',
                                     '_blank'
                                 )">
-                                            <ion-icon name="open"></ion-icon>
+                                            <ion-icon name="open"></ion-icon> Lihat
                                         </button>
                                     </td>
                                 </tr>
