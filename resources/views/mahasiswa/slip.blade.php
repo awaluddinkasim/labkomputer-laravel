@@ -22,7 +22,7 @@
                             }
                         }
                     @endphp
-                    @if ($upload == 'closed')
+                    @if ($upload->value == 'closed')
                         <div class="alert alert-info" role="alert">
                             <i class="fas fa-info-circle"></i>
                             <span class="ml-3">Upload slip praktikum sudah tertutup</span>
@@ -70,79 +70,83 @@
                                             ) }}',
                                             '_blank'
                                         )">
-                                                <ion-icon name="open"></ion-icon>
+                                                Lihat
                                             </button>
+                                            @if ($upload->value != 'closed')
+                                                <button class="btn btn-warning btn-sm" data-toggle="modal"
+                                                    data-target="#upload{{ $loop->iteration }}">
+                                                    Upload Ulang
+                                                </button>
+                                            @endif
                                         @else
-                                            @if ($upload != 'closed')
-                                                <button class="btn btn-primary btn-sm" data-toggle="modal"
+                                            @if ($upload->value != 'closed')
+                                                <button class="btn btn-warning btn-sm" data-toggle="modal"
                                                     data-target="#upload{{ $loop->iteration }}">
                                                     Upload
                                                 </button>
-
-                                                @push('modals')
-                                                    <div class="modal fade" id="upload{{ $loop->iteration }}" tabindex="-1"
-                                                        aria-labelledby="uploadLabel{{ $loop->iteration }}" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title"
-                                                                        id="uploadLabel{{ $loop->iteration }}">
-                                                                        Upload Slip</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <form action="{{ route('slip.store') }}" method="post"
-                                                                    enctype="multipart/form-data">
-                                                                    @csrf
-                                                                    <div class="modal-body">
-                                                                        <input type="hidden" name="id"
-                                                                            value="{{ $data->id }}" required>
-
-                                                                        <div class="form-group">
-                                                                            <label class="mb-0"
-                                                                                for="nominal{{ $loop->iteration }}">Nominal</label>
-                                                                            <input type="text" class="form-control"
-                                                                                id="nominal{{ $loop->iteration }}"
-                                                                                name="nominal" autocomplete="off" required>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="mb-0"
-                                                                                for="tgl{{ $loop->iteration }}">Tanggal
-                                                                                Pembayaran</label>
-                                                                            <input type="date" class="form-control"
-                                                                                id="tgl{{ $loop->iteration }}" name="tgl"
-                                                                                autocomplete="off" required>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="mb-0"
-                                                                                for="slip{{ $loop->iteration }}">Bukti
-                                                                                Slip</label>
-                                                                            <input type="file" class="form-control"
-                                                                                id="slip{{ $loop->iteration }}" name="slip"
-                                                                                accept=".jpeg, .jpg, .png" required>
-                                                                            <small class="form-text text-muted">Ukuran maksimal
-                                                                                2 MB</small>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary"
-                                                                            data-dismiss="modal">Tutup</button>
-                                                                        <button type="submit"
-                                                                            class="btn btn-primary">Upload</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endpush
                                             @else
                                                 <button class="btn btn-primary btn-sm" disabled>
                                                     Upload
                                                 </button>
                                             @endif
                                         @endif
+
+                                        @push('modals')
+                                            <div class="modal fade" id="upload{{ $loop->iteration }}" tabindex="-1"
+                                                aria-labelledby="uploadLabel{{ $loop->iteration }}" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="uploadLabel{{ $loop->iteration }}">
+                                                                Upload Slip</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action="{{ route('slip.store') }}" method="post"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            <div class="modal-body">
+                                                                <input type="hidden" name="id"
+                                                                    value="{{ $data->id }}" required>
+
+                                                                <div class="form-group">
+                                                                    <label class="mb-0"
+                                                                        for="nominal{{ $loop->iteration }}">Nominal</label>
+                                                                    <input type="text" class="form-control"
+                                                                        id="nominal{{ $loop->iteration }}" name="nominal"
+                                                                        autocomplete="off" required>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="mb-0"
+                                                                        for="tgl{{ $loop->iteration }}">Tanggal
+                                                                        Pembayaran</label>
+                                                                    <input type="date" class="form-control"
+                                                                        id="tgl{{ $loop->iteration }}" name="tgl"
+                                                                        autocomplete="off" required>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="mb-0"
+                                                                        for="slip{{ $loop->iteration }}">Bukti
+                                                                        Slip</label>
+                                                                    <input type="file" class="form-control"
+                                                                        id="slip{{ $loop->iteration }}" name="slip"
+                                                                        accept=".jpeg, .jpg, .png" required>
+                                                                    <small class="form-text text-muted">Ukuran maksimal
+                                                                        2 MB</small>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Tutup</button>
+                                                                <button type="submit" class="btn btn-primary">Upload</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endpush
                                     </td>
                                 </tr>
                             @endforeach
