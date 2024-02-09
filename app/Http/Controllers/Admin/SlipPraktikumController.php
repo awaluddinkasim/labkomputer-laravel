@@ -7,18 +7,21 @@ use App\Models\DataPraktikan;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use App\Http\Services\PraktikumService;
+use App\Http\Services\SlipService;
 use Illuminate\Contracts\Encryption\DecryptException;
 
 class SlipPraktikumController extends Controller
 {
     protected $praktikumService;
+    protected $slipService;
 
-    public function __construct(PraktikumService $praktikumService)
+    public function __construct(PraktikumService $praktikumService, SlipService $slipService)
     {
         $this->praktikumService = $praktikumService;
+        $this->slipService = $slipService;
     }
 
-    public function slipPraktikum(Request $request)
+    public function index(Request $request)
     {
         if ($request->has('id')) {
             try {
@@ -43,7 +46,14 @@ class SlipPraktikumController extends Controller
         return view('admin.slip-praktikum', $data);
     }
 
-    public function slipPraktikumExport(Request $request)
+    public function delete(Request $request)
+    {
+        $result = $this->slipService->deleteSlip($request);
+
+        return redirect()->back()->with($result['status'], $result['message']);
+    }
+
+    public function export(Request $request)
     {
         if ($request->has('type') && $request->has('id')) {
             try {

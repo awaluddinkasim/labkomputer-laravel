@@ -64,8 +64,9 @@ Route::group(['middleware' => 'auth:admin', 'as' => 'admin.'], function () {
     Route::delete('/akun/mahasiswa', [MahasiswaController::class, 'delete'])->name('mhs-delete');
 
     // Slip Praktikum
-    Route::get('/slip', [SlipPraktikumController::class, 'slipPraktikum'])->name('slip');
-    Route::get('/slip/export', [SlipPraktikumController::class, 'slipPraktikumExport'])->name('slip-export');
+    Route::get('/slip', [SlipPraktikumController::class, 'index'])->name('slip');
+    Route::delete('/slip', [SlipPraktikumController::class, 'delete'])->name('slip-delete');
+    Route::get('/slip/export', [SlipPraktikumController::class, 'export'])->name('slip-export');
 
     // Bebas Lab
     Route::get('/bebas-lab/{status}', [BebasLabController::class, 'index'])->name('bebas-lab');

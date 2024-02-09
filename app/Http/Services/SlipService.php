@@ -24,4 +24,16 @@ class SlipService
             ];
         }
     }
+
+    public function deleteSlip($data)
+    {
+        try {
+            return $this->slipRepository->delete($data);
+        } catch (\Throwable $th) {
+            return [
+                'status' => 'failed',
+                'message' => 'Terjadi kesalahan'
+            ];
+        }
+    }
 }

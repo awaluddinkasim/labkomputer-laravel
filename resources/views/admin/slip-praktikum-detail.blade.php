@@ -6,6 +6,23 @@
             <h1 class="mr-auto">{{ $praktikum }}</h1>
         </div>
 
+        @if (Session::has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ Session::get('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        @if (Session::has('failed'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ Session::get('failed') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
         <div class="section-body">
             <div class="card">
                 <div class="card-body">
@@ -49,17 +66,27 @@
                                     <td class="text-center">
                                         <button class="btn btn-primary btn-sm"
                                             onclick="window.open(
-                                    '{{ asset(
-                                        'f/slip/' .
-                                            $slip->dataPraktikan->praktikum->prodi->nama .
-                                            '/' .
-                                            str_replace('/', '-', $praktikum) .
-                                            '/' .
-                                            $slip->slip,
-                                    ) }}',
-                                    '_blank'
-                                )">
+                                            '{{ asset(
+                                                'f/slip/' .
+                                                    $slip->dataPraktikan->praktikum->prodi->nama .
+                                                    '/' .
+                                                    str_replace('/', '-', $praktikum) .
+                                                    '/' .
+                                                    $slip->slip,
+                                            ) }}',
+                                            '_blank'
+                                        )">
                                             <ion-icon name="open"></ion-icon>
+                                        </button>
+                                        <form action="{{ route('admin.slip-delete') }}" method="post" class="d-inline"
+                                            id="formDelete{{ $slip->id }}">
+                                            @method('DELETE')
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $slip->id }}" required>
+                                        </form>
+
+                                        <button class="btn btn-danger btn-sm" onclick="deleteData({{ $slip->id }})">
+                                            <ion-icon name="trash"></ion-icon>
                                         </button>
                                     </td>
                                 </tr>
@@ -85,5 +112,18 @@
                 sort: false
             });
         });
+
+        function deleteData(id) {
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Slip pembayaran yang terhapus tak dapat dikembalikan.",
+                icon: 'warning',
+                showCancelButton: true,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $(`#formDelete${id}`).submit();
+                }
+            });
+        }
     </script>
 @endpush
