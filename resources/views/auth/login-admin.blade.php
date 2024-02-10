@@ -68,8 +68,8 @@
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div>
                         <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="remember">
-                            <label class="form-check-label" for="remember" name="remember">Remember me</label>
+                            <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                            <label class="form-check-label" for="remember">Remember me</label>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Login</button>
                     </form>
@@ -78,9 +78,9 @@
             <div class="small text-muted text-center mt-3 d-md-block d-none">
                 @php
                     if (date('Y') == 2020) {
-                        $year = "2020";
+                        $year = '2020';
                     } else {
-                        $year = "2020 - ".date('Y');
+                        $year = '2020 - ' . date('Y');
                     }
                 @endphp
                 {{ config('app.name') }} | Copyright &copy; {{ $year }}
@@ -91,11 +91,11 @@
     <script src="{{ asset('assets/plugins/jquery/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.js') }}"></script>
     @if (Session::has('failed'))
-    <script>
-        $(document).ready(function() {
-            $('#liveToast').toast('show');
-        });
-    </script>
+        <script>
+            $(document).ready(function() {
+                $('#liveToast').toast('show');
+            });
+        </script>
     @endif
 </body>
 
