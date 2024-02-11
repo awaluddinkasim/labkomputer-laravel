@@ -20,6 +20,7 @@
                                 <th>Nama</th>
                                 <th>Nominal</th>
                                 <th>Tanggal Pembayaran</th>
+                                <th>Tanggal Upload</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -35,7 +36,8 @@
                                         </a>
                                     </td>
                                     <td>Rp. {{ number_format($slip->nominal) }}</td>
-                                    <td>{{ $slip->tanggal_slip }}</td>
+                                    <td>{{ Carbon\Carbon::parse($slip->tgl_slip)->isoFormat('D MMMM YYYY') }}</td>
+                                    <td>{{ Carbon\Carbon::parse($slip->created_at)->isoFormat('D MMMM YYYY') }}</td>
                                     <td class="text-center">
                                         <button class="btn btn-primary btn-sm"
                                             onclick="window.open(

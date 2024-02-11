@@ -46,7 +46,10 @@
                     <li class="nav-item d-flex align-self-center justify-content-center">
                         <button class="btn btn-primary btn-sm px-3 ml-lg-3"
                             onclick="document.location.href = '{{ route('login') }}'">
-                            @if (Auth::check() || Auth::guard('admin')->check() || Auth::guard('dosen')->check())
+                            @if (Auth::viaRemember() ||
+                                    Auth::guard('user')->check() ||
+                                    Auth::guard('admin')->check() ||
+                                    Auth::guard('dosen')->check())
                                 Dashboard
                             @else
                                 Login
