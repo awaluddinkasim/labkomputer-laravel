@@ -16,7 +16,13 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $remember = $request->remember ? true : false;
-        if (Auth::attempt(['nim' => $request->nim, 'password' => $request->password], $remember)) {
+
+        $credentials = [
+            'nim' => $request->nim,
+            'password' => $request->password
+        ];
+
+        if (Auth::attempt($credentials, $remember)) {
             if (Auth::user()->active == '1') {
                 return redirect()->route('dashboard');
             } else {

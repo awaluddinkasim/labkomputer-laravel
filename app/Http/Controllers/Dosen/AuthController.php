@@ -17,7 +17,12 @@ class AuthController extends Controller
     {
         $remember = $request->remember ? true : false;
 
-        if (Auth::guard('dosen')->attempt(['nidn' => $request->nidn, 'password' => $request->password], $remember)) {
+        $credentials = [
+            'nidn' => $request->nidn,
+            'password' => $request->password
+        ];
+
+        if (Auth::guard('dosen')->attempt($credentials, $remember)) {
             return redirect()->route('dosen.dashboard');
         }
         return redirect()->back()->with('failed', 'NIDN atau Password salah!');
