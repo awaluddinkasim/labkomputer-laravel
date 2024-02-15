@@ -5,7 +5,8 @@
         <div class="section-header">
             <h1 class="mr-auto">{{ $praktikum->nama }}</h1>
             <div class="d-none d-md-block">
-                <div class="btn btn-success">
+                <div class="btn btn-success"
+                    onclick="document.location.href = '{{ Request::url() }}/export?type=excel&id={{ encrypt($praktikum->id) }}', '_blank'">
                     <i class="fas fa-file-excel"></i>
                 </div>
                 <div class="btn btn-danger"

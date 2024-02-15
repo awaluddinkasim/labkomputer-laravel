@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Dosen;
 
+use Excel;
+use App\Exports\SlipExport;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
@@ -75,14 +77,19 @@ class PraktikumController extends Controller
                 return redirect()->back();
             }
 
+            $praktikum = $this->praktikumService->getPraktikumById($id);
+
             $data = [
-                'daftarSlip' => $this->praktikumService->getPraktikumById($id)->slip
+                'daftarSlip' => $praktikum->slip
             ];
 
             if ($request->type == "pdf") {
                 $pdf = Pdf::loadView('exports.pdf', $data)
                     ->setPaper('a4');
                 return $pdf->stream('slip.pdf');
+            }
+            if ($request->type = "excel") {
+                return Excel::download(new SlipExport($praktikum), 'slip-'. $praktikum->nama .'-'. time() .'.xlsx');
             }
         }
         return redirect()->back();

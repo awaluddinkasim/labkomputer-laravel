@@ -30,7 +30,8 @@
                         <button class="btn btn-primary"
                             onclick="document.location.href = '{{ route('admin.slip') }}'">Kembali</button>
                         <div class="d-none d-md-block">
-                            <div class="btn btn-success">
+                            <div class="btn btn-success"
+                                onclick="document.location.href = '{{ route('admin.slip-export') }}?type=excel&id={{ Request::get('id') }}'">
                                 <i class="fas fa-file-excel"></i>
                             </div>
                             <div class="btn btn-danger"
