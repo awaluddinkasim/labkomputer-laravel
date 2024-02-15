@@ -22,7 +22,7 @@
 </head>
 
 <body class="body-wrapper" data-spy="scroll" data-target=".privacy-nav">
-
+    <noscript>You don't have javascript enabled! Please download Google Chrome!</noscript>
     <nav class="navbar main-nav navbar-expand-lg px-2 px-sm-0 py-2 py-lg-0">
         <div class="container">
             <a class="navbar-brand" href="/">
@@ -46,10 +46,7 @@
                     <li class="nav-item d-flex align-self-center justify-content-center">
                         <button class="btn btn-primary btn-sm px-3 ml-lg-3"
                             onclick="document.location.href = '{{ route('login') }}'">
-                            @if (Auth::viaRemember() ||
-                                    Auth::guard('user')->check() ||
-                                    Auth::guard('admin')->check() ||
-                                    Auth::guard('dosen')->check())
+                            @if (Auth::check() || Auth::guard('admin')->check() || Auth::guard('dosen')->check())
                                 Dashboard
                             @else
                                 Login
@@ -148,8 +145,8 @@
                             <div id="pertanyaan1" class="collapse collapsed" aria-labelledby="headingOne"
                                 data-parent="#questions">
                                 <div class="card-body">
-                                    <p class="mb-2">Silahkan masuk ke halaman Register untuk melakukan registrasi
-                                        akun.</p>
+                                    <p class="mb-2">Silahkan masuk ke halaman Register untuk
+                                        melakukan registrasi akun.</p>
                                 </div>
                             </div>
 
