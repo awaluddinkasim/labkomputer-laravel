@@ -30,7 +30,7 @@ class UserController extends Controller
     {
         $result = $this->mahasiswaService->storeData($request);
 
-        return redirect()->route('login')->with($result['status'], $result['message']);
+        return redirect()->route($result['status'] == "success" ? 'login' : 'register')->with($result['status'], $result['message']);
     }
 
     public function edit()

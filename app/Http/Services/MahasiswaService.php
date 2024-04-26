@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use Illuminate\Database\QueryException;
 use App\Http\Repositories\MahasiswaRepository;
+use Illuminate\Support\Facades\Validator;
 
 class MahasiswaService
 {
@@ -59,6 +60,22 @@ class MahasiswaService
 
     public function storeData($data)
     {
+        $validator = Validator::make($data->all(), [
+            'nim' => 'required',
+            'nama' => 'required',
+            'no_hp' => 'required',
+            'prodi' => 'required',
+            'password' => 'required',
+            'foto' => 'required|image',
+        ]);
+
+        if ($validator->fails()) {
+            return [
+                'status' => 'failed',
+                'message' => 'Data tidak valid'
+            ];
+        }
+
         try {
             $result = $this->mahasiswaRepository->store($data);
 
