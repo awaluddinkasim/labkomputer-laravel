@@ -25,7 +25,7 @@
             <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
                 data-autohide="false">
                 <div class="toast-header">
-                    <strong class="mr-auto">Gagal login</strong>
+                    <strong class="mr-auto">Gagal mendaftar</strong>
                     <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
