@@ -25,7 +25,7 @@ class AuthController extends Controller
         if (Auth::guard('admin')->attempt($credentials, $remember)) {
             return redirect()->route('admin.dashboard');
         }
-        return redirect()->back()->with('failed', 'Email atau Password salah!');
+        return redirect()->back()->withInput()->with('failed', 'Email atau Password salah!');
     }
 
     public function logout()

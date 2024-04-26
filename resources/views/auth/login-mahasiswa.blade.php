@@ -57,7 +57,7 @@
                         <div class="form-group">
                             <label for="nim">Nomor Induk Mahasiswa</label>
                             <input type="text" class="form-control" id="nim" name="nim" autocomplete="off"
-                                autofocus required>
+                                value="{{ old('nim') }}" autofocus required>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>

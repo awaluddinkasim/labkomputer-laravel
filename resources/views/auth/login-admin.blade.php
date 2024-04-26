@@ -61,7 +61,7 @@
                         <div class="form-group">
                             <label for="email">Email Address</label>
                             <input type="email" class="form-control" id="email" name="email" autocomplete="off"
-                                autofocus required>
+                                value="{{ old('email') }}" autofocus required>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>

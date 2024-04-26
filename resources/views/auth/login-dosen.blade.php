@@ -61,7 +61,7 @@
                         <div class="form-group">
                             <label for="nidn">Nomor Induk Dosen Nasional</label>
                             <input type="text" class="form-control" id="nidn" name="nidn" autocomplete="off"
-                                autofocus required>
+                                value="{{ old('nidn') }}" autofocus required>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>

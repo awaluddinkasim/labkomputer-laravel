@@ -25,7 +25,7 @@ class AuthController extends Controller
         if (Auth::guard('dosen')->attempt($credentials, $remember)) {
             return redirect()->route('dosen.dashboard');
         }
-        return redirect()->back()->with('failed', 'NIDN atau Password salah!');
+        return redirect()->back()->withInput()->with('failed', 'NIDN atau Password salah!');
     }
 
     public function logout()

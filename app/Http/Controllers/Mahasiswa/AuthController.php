@@ -28,10 +28,10 @@ class AuthController extends Controller
             } else {
                 Auth::logout();
 
-                return redirect()->back()->with('failed', 'Akun belum diverifikasi');
+                return redirect()->back()->withInput()->with('failed', 'Akun belum diverifikasi');
             }
         }
-        return redirect()->back()->with('failed', 'NIM atau Password salah!');
+        return redirect()->back()->withInput()->with('failed', 'NIM atau Password salah!');
     }
 
     public function logout()
