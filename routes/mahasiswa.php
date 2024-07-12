@@ -37,9 +37,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/slip/praktikum', [PraktikumController::class, 'hapusPraktikum'])->name('hapus-praktikum');
 
     // Bebas Lab
-    Route::get('/bebas-lab', [BebasLabController::class, 'index'])->name('bebas-lab');
-    Route::get('/bebas-lab/upload', [BebasLabController::class, 'upload'])->name('bebas-lab.upload');
-    Route::post('/bebas-lab/upload', [BebasLabController::class, 'store'])->name('bebas-lab.store');
+    // Route::get('/bebas-lab', [BebasLabController::class, 'index'])->name('bebas-lab');
+    // Route::get('/bebas-lab/upload', [BebasLabController::class, 'upload'])->name('bebas-lab.upload');
+    // Route::post('/bebas-lab/upload', [BebasLabController::class, 'store'])->name('bebas-lab.store');
 
     // Akun
     Route::get('/profil', [UserController::class, 'edit'])->name('profil');

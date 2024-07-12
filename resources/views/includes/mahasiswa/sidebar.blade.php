@@ -22,8 +22,11 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li class="{{ Request::segment(2) == 'mahasiswa' ? 'active' : '' }}">
-                            <a class="nav-link daftar-mhs" href="{{ route('asisten.daftar-mahasiswa') }}">Daftar Mahasiswa
-                                {!! $unverifiedUser ? '<span id="unverified" class="badge badge-danger ml-auto">' . $unverifiedUser . '</span>' : '' !!}</a>
+                            <a class="nav-link daftar-mhs" href="{{ route('asisten.daftar-mahasiswa') }}">Daftar
+                                Mahasiswa
+                                {!! $unverifiedUser
+                                    ? '<span id="unverified" class="badge badge-danger ml-auto">' . $unverifiedUser . '</span>'
+                                    : '' !!}</a>
                         </li>
                         <li class="{{ Request::segment(2) == 'slip' ? 'active' : '' }}"><a class="nav-link"
                                 href="{{ route('asisten.slip') }}">Slip Pembayaran</a></li>
@@ -42,12 +45,12 @@
                     <span>Slip Pembayaran</span>
                 </a>
             </li>
-            <li class="{{ Request::segment(1) == "bebas-lab" ? 'active' : '' }}">
+            {{-- <li class="{{ Request::segment(1) == "bebas-lab" ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('bebas-lab') }}">
                     <ion-icon name="document"></ion-icon>
                     <span>Bebas Lab</span>
                 </a>
-            </li>
+            </li> --}}
         </ul>
 
     </aside>
