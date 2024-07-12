@@ -96,6 +96,8 @@ class MahasiswaRepository
         //     }
         //     $mhs->foto = $filename;
         //     $foto->move(public_path('f/avatar'), $filename);
+        // } else {
+        $mhs->foto = 'default.png';
         // }
         $mhs->save();
 
