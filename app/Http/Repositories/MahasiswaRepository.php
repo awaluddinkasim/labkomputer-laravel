@@ -102,7 +102,7 @@ class MahasiswaRepository
         $mhs->save();
 
         $unverifiedUser = $this->mahasiswa::where('active', '0')->get()->count();
-        event(new UserRegistered($unverifiedUser));
+        UserRegistered::dispatch($unverifiedUser);
 
         return [
             'status' => 'success',
