@@ -74,15 +74,15 @@ class MahasiswaRepository
 
     public function store($data)
     {
-        if ($data->has('foto') && $data->foto) {
-            $foto = $data->file('foto');
-            $filename = 'mhs-' . uniqid() . '.' . $foto->extension();
-        } else {
-            return [
-                'status' => 'failed',
-                'message' => 'Foto tidak ditemukan'
-            ];
-        }
+        // if ($data->has('foto') && $data->foto) {
+        //     $foto = $data->file('foto');
+        //     $filename = 'mhs-' . uniqid() . '.' . $foto->extension();
+        // } else {
+        //     return [
+        //         'status' => 'failed',
+        //         'message' => 'Foto tidak ditemukan'
+        //     ];
+        // }
 
         $mhs = new $this->mahasiswa();
         $mhs->nim = $data->nim;
@@ -90,13 +90,13 @@ class MahasiswaRepository
         $mhs->no_hp = substr($data->no_hp, 0, 2) == "08" ? $data->no_hp : "0" . $data->no_hp;
         $mhs->id_prodi = $data->prodi;
         $mhs->password = Hash::make($data->password);
-        if (isset($foto)) {
-            if ($mhs->foto != "default.png") {
-                File::delete(public_path('f/avatar/' . $mhs->foto));
-            }
-            $mhs->foto = $filename;
-            $foto->move(public_path('f/avatar'), $filename);
-        }
+        // if (isset($foto)) {
+        //     if ($mhs->foto != "default.png") {
+        //         File::delete(public_path('f/avatar/' . $mhs->foto));
+        //     }
+        //     $mhs->foto = $filename;
+        //     $foto->move(public_path('f/avatar'), $filename);
+        // }
         $mhs->save();
 
         $unverifiedUser = $this->mahasiswa::where('active', '0')->get()->count();

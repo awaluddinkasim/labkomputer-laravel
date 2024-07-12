@@ -92,7 +92,7 @@
                 Swal.fire({
                     icon: 'error',
                     title: 'Gagal!',
-                    text: 'Ukuran gambar terlalu besar'
+                    text: 'Pastikan ukuran gambar tidak lebih dari 2 MB'
                 })
             }
         })

@@ -84,12 +84,12 @@
                     <label class="mb-0" for="password">Password</label>
                     <input type="password" class="form-control" id="password" name="password" minlength="6" required>
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label class="mb-0" for="foto">Foto</label>
                     <input type="file" class="form-control" id="foto" name="foto" accept=".jpg, .jpeg, .png"
                         required>
                     <small class="form-text text-muted">Ukuran maksimal 2 MB</small>
-                </div>
+                </div> --}}
                 <button type="submit" class="btn btn-primary btn-block">Daftar</button>
             </form>
 
@@ -109,7 +109,7 @@
     <script src="{{ asset('assets/plugins/jquery/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
-    <script>
+    {{-- <script>
         $('#foto').on('change', function() {
             var fileExtension = ['jpeg', 'jpg', 'png'];
             if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
@@ -133,7 +133,7 @@
                 })
             }
         })
-    </script>
+    </script> --}}
     @if (Session::has('failed'))
         <script>
             $(document).ready(function() {
