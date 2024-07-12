@@ -66,7 +66,6 @@ class MahasiswaService
             'no_hp' => 'required',
             'prodi' => 'required',
             'password' => 'required',
-            'foto' => 'required|image',
         ]);
 
         if ($validator->fails()) {
