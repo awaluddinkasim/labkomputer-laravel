@@ -19,7 +19,7 @@
         img {
             display: block;
             max-width: 20.2cm;
-            max-height: 47%;
+            max-height: 45%;
             padding-bottom: 10px;
         }
 
@@ -36,7 +36,14 @@
         @endif
         <table class="table">
             @php
-                $image = public_path('f/slip/' . $slip->dataPraktikan->praktikum->prodi->nama . '/' . str_replace('/', '-', $slip->dataPraktikan->praktikum->nama) . '/' . $slip->slip);
+                $image = public_path(
+                    'f/slip/' .
+                        $slip->dataPraktikan->praktikum->prodi->nama .
+                        '/' .
+                        str_replace('/', '-', $slip->dataPraktikan->praktikum->nama) .
+                        '/' .
+                        $slip->slip,
+                );
                 $imageSize = getimagesize($image);
                 if ($imageSize[0] < $imageSize[1]) {
                     $portrait = true;
@@ -44,8 +51,10 @@
             @endphp
             <tr>
                 <td>{{ $slip->dataPraktikan->praktikan->nim . ' - ' . $slip->dataPraktikan->praktikan->nama }}</td>
-                <td style="text-align: right">Rp. {{ number_format($slip->nominal) }} -
-                    {{ Carbon\Carbon::parse($slip->tgl_slip)->isoFormat('D MMMM YYYY') }}</td>
+                <td style="text-align: right">
+                    Rp. {{ number_format($slip->nominal) }} -
+                    {{ Carbon\Carbon::parse($slip->tgl_slip)->isoFormat('D MMMM YYYY') }}
+                </td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align: center">
