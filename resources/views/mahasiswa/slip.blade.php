@@ -149,6 +149,16 @@
                                         @endpush
                                     </td>
                                 </tr>
+
+                                @push('script')
+                                    <script src="{{ asset('assets/plugins/autonumeric/autoNumeric.min.js') }}"></script>
+                                    <script>
+                                        new AutoNumeric('#nominal{{ $loop->iteration }}', {
+                                            allowDecimalPadding: false,
+                                            modifyValueOnWheel: false
+                                        });
+                                    </script>
+                                @endpush
                             @endforeach
                         </tbody>
                     </table>
