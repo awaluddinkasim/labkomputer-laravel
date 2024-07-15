@@ -10,7 +10,8 @@
                     <button class="btn btn-success" onclick="action('verifikasi')">Verifikasi</button>
                 </div>
             @else
-                <button class="btn btn-info" onclick="document.location.href = '{{ route('admin.mhs-edit', $mahasiswa->id) }}'">
+                <button class="btn btn-info"
+                    onclick="document.location.href = '{{ route('admin.mhs-edit', $mahasiswa->id) }}'">
                     <i class="fas fa-edit"></i>
                 </button>
             @endif
@@ -57,8 +58,8 @@
                         </div>
                         @if (!$mahasiswa->active)
                             <div class="card-footer text-right d-lg-none">
-                                <button class="btn btn-outline-danger">Tolak</button>
-                                <button class="btn btn-success">Verifikasi</button>
+                                <button class="btn btn-outline-danger" onclick="action('tolak')">Tolak</button>
+                                <button class="btn btn-success" onclick="action('verifikasi')">Verifikasi</button>
                             </div>
                         @endif
                     </div>
